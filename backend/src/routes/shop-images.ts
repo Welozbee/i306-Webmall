@@ -2,7 +2,8 @@ import express from "express";
 import fs from "node:fs";
 import path from "node:path";
 import multer from "multer";
-import { Prisma } from "../../generated/prisma/client";
+import { Prisma, Role } from "../../generated/prisma/client";
+import { authenticate, authorize } from "../middlewares/auth";
 import prisma from "../prisma";
 
 const router = express.Router();
@@ -59,69 +60,81 @@ router.get("/:id/images", async (req, res) => {
   res.status(200).json({ images });
 });
 
-router.post("/:id/images", upload.single("image"), async (req, res) => {
-  const id = Number(req.params.id);
-  if (Number.isNaN(id)) {
-    res.status(400).json({ error: "Invalid shop id" });
-    return;
-  }
-
-  if (!req.file) {
-    res.status(400).json({ error: "Missing required file: image" });
-    return;
-  }
-
-  try {
-    const image = await prisma.shopImage.create({
-      data: {
-        shopId: id,
-        url: `/uploads/${req.file.filename}`,
-      },
-    });
-    res.status(201).json(image);
-  } catch (error) {
-    if (
-      error instanceof Prisma.PrismaClientKnownRequestError &&
-      error.code === "P2025"
-    ) {
-      res.status(404).json({ error: "Shop not found" });
+router.post(
+  "/:id/images",
+  authenticate,
+  authorize(Role.EMPLOYEE, Role.ADMIN),
+  upload.single("image"),
+  async (req, res) => {
+    const id = Number(req.params.id);
+    if (Number.isNaN(id)) {
+      res.status(400).json({ error: "Invalid shop id" });
       return;
     }
-    res.status(500).json({ error: "Failed to save shop image" });
-  }
-});
 
-router.post("/:id/images/logo", upload.single("image"), async (req, res) => {
-  const id = Number(req.params.id);
-  if (Number.isNaN(id)) {
-    res.status(400).json({ error: "Invalid shop id" });
-    return;
-  }
-
-  if (!req.file) {
-    res.status(400).json({ error: "Missing required file: image" });
-    return;
-  }
-
-  const logoUrl = `/uploads/${req.file.filename}`;
-
-  try {
-    const shop = await prisma.shop.update({
-      where: { id },
-      data: { logoUrl },
-      select: { logoUrl: true },
-    });
-    res.status(200).json({ logoUrl: shop.logoUrl });
-  } catch (error) {
-    if (
-      error instanceof Prisma.PrismaClientKnownRequestError &&
-      error.code === "P2025"
-    ) {
-      res.status(404).json({ error: "Shop not found" });
+    if (!req.file) {
+      res.status(400).json({ error: "Missing required file: image" });
       return;
     }
-    res.status(500).json({ error: "Failed to update shop logo" });
-  }
-});
+
+    try {
+      const image = await prisma.shopImage.create({
+        data: {
+          shopId: id,
+          url: `/uploads/${req.file.filename}`,
+        },
+      });
+      res.status(201).json(image);
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2025"
+      ) {
+        res.status(404).json({ error: "Shop not found" });
+        return;
+      }
+      res.status(500).json({ error: "Failed to save shop image" });
+    }
+  },
+);
+
+router.post(
+  "/:id/images/logo",
+  authenticate,
+  authorize(Role.EMPLOYEE, Role.ADMIN),
+  upload.single("image"),
+  async (req, res) => {
+    const id = Number(req.params.id);
+    if (Number.isNaN(id)) {
+      res.status(400).json({ error: "Invalid shop id" });
+      return;
+    }
+
+    if (!req.file) {
+      res.status(400).json({ error: "Missing required file: image" });
+      return;
+    }
+
+    const logoUrl = `/uploads/${req.file.filename}`;
+
+    try {
+      const shop = await prisma.shop.update({
+        where: { id },
+        data: { logoUrl },
+        select: { logoUrl: true },
+      });
+      res.status(200).json({ logoUrl: shop.logoUrl });
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2025"
+      ) {
+        res.status(404).json({ error: "Shop not found" });
+        return;
+      }
+      res.status(500).json({ error: "Failed to update shop logo" });
+    }
+  },
+);
 
 export default router;

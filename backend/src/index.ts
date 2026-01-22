@@ -1,6 +1,7 @@
 import express from "express";
 import logger from "./middlewares/logger";
 import prisma from "./prisma";
+import authRouter from "./routes/auth";
 import shopImagesRouter from "./routes/shop-images";
 import shopRouter from "./routes/shop";
 
@@ -21,6 +22,7 @@ app.get("/health", async (req, res) => {
   }
 });
 
+app.use("/auth", authRouter);
 app.use("/shop", shopRouter);
 app.use("/shop", shopImagesRouter);
 

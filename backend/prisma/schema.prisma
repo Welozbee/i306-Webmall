@@ -7,6 +7,32 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Role {
+  USER
+  EMPLOYEE
+  ADMIN
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  refreshTokens RefreshToken[]
+}
+
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  tokenHash String   @unique
+  revokedAt DateTime?
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
 // SHOP MODEL
 model Shop {
   id        Int      @id @default(autoincrement())

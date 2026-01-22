@@ -1,4 +1,6 @@
 import prisma from "../src/prisma";
+import bcrypt from "bcryptjs";
+import { Role } from "../generated/prisma/client";
 
 async function main() {
   await prisma.shopImage.deleteMany();
@@ -32,6 +34,21 @@ async function main() {
       },
     },
   });
+
+  const adminEmail = process.env.SEED_ADMIN_EMAIL;
+  const adminPassword = process.env.SEED_ADMIN_PASSWORD;
+  if (adminEmail && adminPassword) {
+    const passwordHash = await bcrypt.hash(adminPassword, 10);
+    await prisma.user.upsert({
+      where: { email: adminEmail.toLowerCase() },
+      update: { passwordHash, role: Role.ADMIN },
+      create: {
+        email: adminEmail.toLowerCase(),
+        passwordHash,
+        role: Role.ADMIN,
+      },
+    });
+  }
 }
 
 main()
