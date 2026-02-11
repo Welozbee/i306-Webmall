@@ -23,6 +23,7 @@ Il est inspire d'un cas d'usage de centre commercial, mais:
 - il **n'est pas un produit officiel**
 - il **n'est en aucun cas affilie, sponsorise, valide ou maintenu** par l'entreprise reelle
 - les marques/noms visibles sont utilises uniquement dans un cadre de demonstration
+- son utilisation est **strictement non commerciale** (voir section Licence)
 
 ## 🧱 Stack technique
 
@@ -85,10 +86,10 @@ Le projet repond au brief suivant:
 
 ### 💸 Budget serre + legalite
 
-- Stack 100% open-source (React, Node.js, Prisma, PostgreSQL, Nginx, Docker).
+- Stack basee sur des technologies open-source (React, Node.js, Prisma, PostgreSQL, Nginx, Docker).
 - Deploiement self-hosted possible pour limiter les couts d'exploitation.
 - Aucune dependance obligatoire a des services SaaS payants.
-- Le projet reste dans un cadre legal de demonstration (voir disclaimer ci-dessus).
+- Le projet reste dans un cadre legal de demonstration et d'usage non commercial (voir disclaimer et licence).
 
 ## 🚀 Deploiement Docker
 
@@ -173,3 +174,10 @@ Compose direct:
 ```bash
 docker compose -f docker-compose.dev.yml up --build
 ```
+
+## 📄 Licence
+
+Ce projet est distribue sous licence **NCAL v1.0 (Non-Commercial Academic License)**.
+Utilisation personnelle et academique autorisee.
+Toute utilisation commerciale est interdite sans autorisation ecrite.
+Voir le fichier `LICENSE`.
