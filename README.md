@@ -2,24 +2,58 @@
   <img src="frontend/public/images/foxtown-icon.svg" alt="FoxTown logo" width="180" />
 </p>
 
-Application web full-stack pour un centre commercial:
-- consultation des boutiques et du plan
-- suivi des parkings et des visiteurs
-- authentification JWT (utilisateurs/admin)
-- mini-jeu avec récompenses
+## ✨ Une experience digitale complete pour un centre commercial
 
-Le projet contient:
-- un environnement de dev Docker (`docker-compose.dev.yml`)
-- un déploiement Docker prêt pour serveur (`docker-compose.yml`)
+Ce projet propose une application web moderne, rapide et immersive pour un mall:
+- 🛍️ decouvrir les boutiques par categorie
+- 🗺️ consulter le plan du centre
+- 🅿️ suivre la disponibilite des parkings
+- 👤 gerer l'authentification (utilisateur/admin)
+- 🎁 jouer et gagner des recompenses
+- 📊 suivre les visites et l'activite
 
-## Stack
+Objectif: offrir une base realiste de produit digital "retail" avec une architecture propre, deploiement Docker et stack full-stack actuelle.
+
+## ⚠️ Disclaimer important
+
+Ce repository est un **projet personnel / academique**.
+Il est inspire d'un cas d'usage de centre commercial, mais:
+- il **n'est pas un produit officiel**
+- il **n'est en aucun cas affilie, sponsorise, valide ou maintenu** par l'entreprise reelle
+- les marques/noms visibles sont utilises uniquement dans un cadre de demonstration
+
+## 🧱 Stack technique
 
 - Frontend: React + Vite
 - Backend: Node.js + Express + Prisma
 - Base de donnees: PostgreSQL
 - Reverse proxy: Nginx (dans le conteneur frontend)
+- Infra locale/prod: Docker Compose
 
-## Deploiement (Docker)
+## ✅ Cahier des charges: reponse point par point
+
+### 1) Application web complete (front + back + DB)
+- **Reponse apportee**: architecture separee `frontend/` + `backend/` + PostgreSQL via Docker.
+
+### 2) Gestion des donnees metier (boutiques, parkings, utilisateurs)
+- **Reponse apportee**: modelisation Prisma + migrations SQL + endpoints API dedies.
+
+### 3) Authentification et roles
+- **Reponse apportee**: JWT access/refresh token, routes protegees, roles (`USER`, `EMPLOYEE`, `ADMIN`).
+
+### 4) Fonctionnalites engageantes pour les visiteurs
+- **Reponse apportee**: module de jeu avec probabilites, lots, recompenses et affichage client.
+
+### 5) Observabilite basique et robustesse
+- **Reponse apportee**: endpoint `/health`, logs middleware, persistence Postgres, gestion des erreurs API.
+
+### 6) Deploiement conteneurise
+- **Reponse apportee**: stack dev (`docker-compose.dev.yml`) + stack deploiement (`docker-compose.yml`) avec proxy Nginx.
+
+### 7) Exploitabilite et documentation
+- **Reponse apportee**: README de lancement, fichiers `.env`, commandes de migration et run Docker standardisees.
+
+## 🚀 Deploiement Docker
 
 Prerequis:
 - Docker
@@ -63,7 +97,7 @@ docker compose logs -f
 docker compose exec backend npx prisma migrate deploy
 ```
 
-## Attention au seed
+## 🌱 Attention au seed
 
 Le script `backend/prisma/seed.ts` est destructif (suppression puis recreation de donnees).
 Ne pas l'executer sur une base de production si ce comportement n'est pas voulu.
@@ -74,7 +108,7 @@ Execution manuelle:
 docker compose exec backend npm run seed
 ```
 
-## Developpement local
+## 💻 Developpement local
 
 Demarrer:
 
