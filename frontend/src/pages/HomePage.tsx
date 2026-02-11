@@ -109,13 +109,15 @@ export default function HomePage() {
       {showConfetti && <Confetti />}
       <WinBanner />
       {/* Hero with image */}
-      <section className="relative overflow-hidden">
-        <img
-          src="/images/accueil.jpg"
-          alt="FoxTown Factory Stores"
-          className="w-full h-[300px] md:h-[500px] object-cover scale-110"
-          style={{ transform: `translateY(${scrollY * 0.3}px) scale(1.1)` }}
-        />
+      <section className="relative">
+        <div className="overflow-hidden h-[300px] md:h-[500px] bg-black">
+          <img
+            src="/images/accueil.jpg"
+            alt="FoxTown Factory Stores"
+            className="w-full h-full object-cover"
+            style={{ transform: `translateY(${scrollY * 0.3}px) scale(1.1)` }}
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
           <img src="/images/foxtown-icon.svg" alt="FoxTown" className="h-20 md:h-28 mb-3 drop-shadow-lg" />
@@ -124,61 +126,35 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* Floating stats - desktop only */}
-        <div className="hidden sm:flex absolute bottom-0 left-0 right-0 justify-center gap-4 translate-y-1/2 px-4">
-          <div className="bg-white rounded-lg shadow-lg px-6 py-4 flex items-center gap-3 border border-gray-100">
-            <Users className="text-fox-orange shrink-0" size={28} />
+        {/* Floating stats */}
+        <div className="absolute bottom-0 left-0 right-0 translate-y-1/2 z-10 flex justify-center gap-3 sm:gap-6 px-4">
+          <div className="flex items-center gap-2 sm:gap-3 bg-white rounded-lg border border-gray-100 px-3 py-3 sm:px-6 sm:py-4 shadow-lg">
+            <Users className="text-fox-orange shrink-0" size={24} />
             <div>
-              <p className="text-2xl font-bold text-gray-800">
+              <p className="text-lg sm:text-2xl font-bold text-gray-800">
                 {monthlyVisitors !== null ? animatedVisitors.toLocaleString("fr-CH") : "..."}
               </p>
               <p className="text-xs text-gray-500">Visiteurs ce mois</p>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow-lg px-6 py-4 flex items-center gap-3 border border-gray-100">
-            <Car className="text-fox-orange shrink-0" size={28} />
+          <div className="flex items-center gap-2 sm:gap-3 bg-white rounded-lg border border-gray-100 px-3 py-3 sm:px-6 sm:py-4 shadow-lg">
+            <Car className="text-fox-orange shrink-0" size={24} />
             <div>
-              <p className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+              <p className="text-lg sm:text-2xl font-bold text-gray-800 flex items-center gap-1.5">
                 {totalParking !== null ? animatedParking.toLocaleString("fr-CH") : "..."}
-                <span className="relative flex h-2.5 w-2.5">
+                <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
               </p>
-              <p className="text-xs text-gray-500">Places de parking libres</p>
+              <p className="text-xs text-gray-500">Places libres</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats mobile - inline between hero and game */}
-      <div className="flex sm:hidden gap-3 px-4 py-4 bg-white">
-        <div className="flex-1 flex items-center gap-2 rounded-lg border border-gray-100 px-3 py-3 shadow-sm">
-          <Users className="text-fox-orange shrink-0" size={20} />
-          <div>
-            <p className="text-lg font-bold text-gray-800">
-              {monthlyVisitors !== null ? animatedVisitors.toLocaleString("fr-CH") : "..."}
-            </p>
-            <p className="text-xs text-gray-500">Visiteurs ce mois</p>
-          </div>
-        </div>
-        <div className="flex-1 flex items-center gap-2 rounded-lg border border-gray-100 px-3 py-3 shadow-sm">
-          <Car className="text-fox-orange shrink-0" size={20} />
-          <div>
-            <p className="text-lg font-bold text-gray-800 flex items-center gap-1.5">
-              {totalParking !== null ? animatedParking.toLocaleString("fr-CH") : "..."}
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
-            </p>
-            <p className="text-xs text-gray-500">Places libres</p>
-          </div>
-        </div>
-      </div>
-
       {/* Game Section */}
-      <section ref={gameSection.ref} className={`pt-8 sm:pt-16 pb-12 bg-fox-red/5 transition-all duration-700 ${gameSection.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+      <section ref={gameSection.ref} className={`pt-14 sm:pt-16 pb-12 bg-fox-red/5 transition-all duration-700 ${gameSection.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-8">
             <Gift className="inline-block text-fox-orange mb-2" size={40} />
