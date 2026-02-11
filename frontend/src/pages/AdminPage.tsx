@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 import { apiFetch } from "../lib/api";
 import { useToast } from "../components/Toast";
-import { Store, Car, BarChart3, Save, Plus, Trash2, Edit3, X } from "lucide-react";
+import { Store, Car, BarChart3, Save, Plus, Trash2, Edit3, X, Users, Shield } from "lucide-react";
 
 interface Shop {
   id: number;
@@ -31,7 +31,14 @@ interface VisitorStats {
   dailyBreakdown: { date: string; count: number }[];
 }
 
-type Tab = "shops" | "parkings" | "stats";
+interface UserItem {
+  id: number;
+  email: string;
+  role: "USER" | "EMPLOYEE" | "ADMIN";
+  createdAt: string;
+}
+
+type Tab = "shops" | "parkings" | "stats" | "users";
 
 export default function AdminPage() {
   const { user, isEmployee } = useAuth();
@@ -74,11 +81,23 @@ export default function AdminPage() {
           <BarChart3 size={16} />
           Statistiques
         </button>
+        {user?.role === "ADMIN" && (
+          <button
+            onClick={() => setTab("users")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition ${
+              tab === "users" ? "border-fox-orange text-fox-orange" : "border-transparent text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            <Users size={16} />
+            Utilisateurs
+          </button>
+        )}
       </div>
 
       {tab === "shops" && <ShopsAdmin />}
       {tab === "parkings" && <ParkingsAdmin />}
       {tab === "stats" && <StatsAdmin />}
+      {tab === "users" && <UsersAdmin currentUserId={user.id} />}
     </div>
   );
 }
@@ -378,6 +397,93 @@ function StatCard({ label, value }: { label: string; value: number }) {
     <div className="bg-white rounded-lg shadow p-6 border border-gray-100 text-center">
       <p className="text-3xl font-bold text-fox-orange">{value.toLocaleString("fr-CH")}</p>
       <p className="text-sm text-gray-500 mt-1">{label}</p>
+    </div>
+  );
+}
+
+function UsersAdmin({ currentUserId }: { currentUserId: number }) {
+  const { toast } = useToast();
+  const [users, setUsers] = useState<UserItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    apiFetch<UserItem[]>("/users")
+      .then(setUsers)
+      .catch(() => toast("Erreur lors du chargement des utilisateurs", "error"))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const updateRole = async (userId: number, newRole: UserItem["role"]) => {
+    try {
+      const updated = await apiFetch<UserItem>(`/users/${userId}/role`, {
+        method: "PUT",
+        body: JSON.stringify({ role: newRole }),
+      });
+      setUsers(users.map((u) => (u.id === updated.id ? updated : u)));
+      toast("Rôle mis à jour");
+    } catch (err) {
+      toast(err instanceof Error ? err.message : "Erreur", "error");
+    }
+  };
+
+  const roleBadge = (role: UserItem["role"]) => {
+    const styles = {
+      ADMIN: "bg-red-100 text-red-700",
+      EMPLOYEE: "bg-blue-100 text-blue-700",
+      USER: "bg-gray-100 text-gray-600",
+    };
+    const labels = { ADMIN: "Admin", EMPLOYEE: "Employé", USER: "Utilisateur" };
+    return (
+      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium ${styles[role]}`}>
+        {role === "ADMIN" && <Shield size={12} />}
+        {labels[role]}
+      </span>
+    );
+  };
+
+  if (loading) return <p className="text-gray-400">Chargement des utilisateurs...</p>;
+
+  return (
+    <div>
+      <p className="text-sm text-gray-500 mb-4">{users.length} utilisateurs</p>
+      <div className="bg-white rounded-lg shadow overflow-hidden">
+        <table className="w-full text-sm">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="text-left px-4 py-3 font-medium text-gray-600">Email</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-600 hidden sm:table-cell">Inscrit le</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-600">Rôle</th>
+              <th className="px-4 py-3 font-medium text-gray-600">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            {users.map((u) => (
+              <tr key={u.id} className="hover:bg-gray-50">
+                <td className="px-4 py-3 font-medium text-gray-800">{u.email}</td>
+                <td className="px-4 py-3 text-gray-500 hidden sm:table-cell">
+                  {new Date(u.createdAt).toLocaleDateString("fr-CH")}
+                </td>
+                <td className="px-4 py-3">{roleBadge(u.role)}</td>
+                <td className="px-4 py-3">
+                  {u.id === currentUserId ? (
+                    <span className="text-xs text-gray-400">Vous</span>
+                  ) : (
+                    <select
+                      value={u.role}
+                      onChange={(e) => updateRole(u.id, e.target.value as UserItem["role"])}
+                      className="text-sm border border-gray-200 rounded-md px-2 py-1"
+                    >
+                      <option value="USER">Utilisateur</option>
+                      <option value="EMPLOYEE">Employé</option>
+                      <option value="ADMIN">Admin</option>
+                    </select>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
