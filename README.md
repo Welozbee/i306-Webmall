@@ -1,7 +1,5 @@
-# FoxTown Mall App
-
 <p align="center">
-  <img src="frontend/public/images/foxtown-logo.png" alt="FoxTown logo" width="240" />
+  <img src="frontend/public/images/foxtown-icon.svg" alt="FoxTown logo" width="180" />
 </p>
 
 Application web full-stack pour un centre commercial:
