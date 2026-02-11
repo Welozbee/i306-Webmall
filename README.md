@@ -1,74 +1,103 @@
-# Project
+# FoxTown Mall App
 
-## Quickstart (Docker)
+<p align="center">
+  <img src="frontend/public/images/foxtown-logo.png" alt="FoxTown logo" width="240" />
+</p>
 
-Prerequisites:
+Application web full-stack pour un centre commercial:
+- consultation des boutiques et du plan
+- suivi des parkings et des visiteurs
+- authentification JWT (utilisateurs/admin)
+- mini-jeu avec récompenses
 
-- Docker + Docker Compose
+Le projet contient:
+- un environnement de dev Docker (`docker-compose.dev.yml`)
+- un déploiement Docker prêt pour serveur (`docker-compose.yml`)
 
-Start in the background:
+## Stack
+
+- Frontend: React + Vite
+- Backend: Node.js + Express + Prisma
+- Base de donnees: PostgreSQL
+- Reverse proxy: Nginx (dans le conteneur frontend)
+
+## Deploiement (Docker)
+
+Prerequis:
+- Docker
+- Docker Compose plugin
+
+1. Creer le fichier d'environnement:
+
+```bash
+cp .env.example .env
+```
+
+2. Modifier au minimum:
+- `JWT_SECRET`
+- `POSTGRES_USER`
+- `POSTGRES_PASSWORD`
+- `POSTGRES_DB`
+
+3. Build + demarrage:
+
+```bash
+docker compose up --build -d
+```
+
+Endpoints:
+- Frontend: `http://YOUR_DOMAIN_OR_SERVER_IP`
+- Health API: `http://YOUR_DOMAIN_OR_SERVER_IP/api/health`
+
+Arret:
+
+```bash
+docker compose down
+```
+
+Commandes utiles:
+
+```bash
+# Logs
+docker compose logs -f
+
+# Migrations Prisma manuelles
+docker compose exec backend npx prisma migrate deploy
+```
+
+## Attention au seed
+
+Le script `backend/prisma/seed.ts` est destructif (suppression puis recreation de donnees).
+Ne pas l'executer sur une base de production si ce comportement n'est pas voulu.
+
+Execution manuelle:
+
+```bash
+docker compose exec backend npm run seed
+```
+
+## Developpement local
+
+Demarrer:
 
 ```bash
 make dev
 ```
 
-Or build and start:
+Build + demarrer:
 
 ```bash
 make dev-build
 ```
 
-Stop the stack:
+Arreter:
 
 ```bash
 make dev-down
 ```
 
-If you prefer docker compose directly:
+Compose direct:
 
 ```bash
 docker compose -f docker-compose.dev.yml up --build
-```
-
-## Services
-
-- Backend: http://localhost:3000
-- Frontend: http://localhost:5173
-- Postgres: localhost:5432 (user: postgres, password: postgres, db: app)
-
-## Auth (JWT)
-
-Environment variables (backend):
-
-- `JWT_SECRET` (required)
-- `JWT_EXPIRES_IN` (optional, default: `1h`)
-- `REFRESH_TOKEN_TTL_DAYS` (optional, default: `7`)
-- `SEED_ADMIN_EMAIL` + `SEED_ADMIN_PASSWORD` (optional, create/update an admin on seed)
-
-Endpoints:
-
-- `POST /auth/register` (open registration, role defaults to `USER`)
-- `POST /auth/login`
-- `POST /auth/refresh` (rotate refresh token)
-- `POST /auth/logout` (revoke refresh token)
-
-Protected routes:
-
-- `POST/PUT/DELETE /shop/*` and `POST /shop/:id/images*` require `EMPLOYEE` or `ADMIN`.
-
-## Dev Notes
-
-- The backend runs with nodemon inside Docker so it should reload on file changes.
-
-## Quickstart without make
-
-```powershell
-# Start
-docker compose -f docker-compose.dev.yml up -d
-
-# Build + start
-docker compose -f docker-compose.dev.yml up --build -d
-
-# Stop
-docker compose -f docker-compose.dev.yml down
 ```
