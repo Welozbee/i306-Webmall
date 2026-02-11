@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { apiFetch } from "../lib/api";
 import { Car, RefreshCw } from "lucide-react";
+import { ParkingCardSkeleton } from "../components/Skeleton";
 
 interface Parking {
   id: number;
@@ -54,10 +55,11 @@ export default function ParkingsPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {parkings.map((parking) => (
-          <div key={parking.id} className="bg-white rounded-xl shadow p-6 border border-gray-100">
+        {loading && Array.from({ length: 4 }).map((_, i) => <ParkingCardSkeleton key={i} />)}
+        {!loading && parkings.map((parking) => (
+          <div key={parking.id} className="bg-white rounded-lg shadow p-6 border border-gray-100">
             <div className="flex items-center gap-3 mb-4">
-              <div className="bg-fox-orange/10 p-3 rounded-lg">
+              <div className="bg-fox-orange/10 p-3 rounded-md">
                 <Car className="text-fox-orange" size={24} />
               </div>
               <div>
@@ -88,7 +90,7 @@ export default function ParkingsPage() {
         ))}
       </div>
 
-      {parkings.length === 0 && !loading && (
+      {!loading && parkings.length === 0 && (
         <div className="text-center py-12 text-gray-400">
           Aucun parking disponible.
         </div>

@@ -263,6 +263,22 @@ async function main() {
   }
   console.log(`Seeded ${prizes.length} prizes`);
 
+  // Seed 100k visitor logs spread over the last 12 months
+  const TOTAL_VISITORS = 100_000;
+  const BATCH_SIZE = 1000;
+  const now = Date.now();
+  const TWELVE_MONTHS = 365 * 24 * 60 * 60 * 1000;
+  const paths = ["/", "/boutiques", "/plan", "/parkings", "/login"];
+
+  for (let i = 0; i < TOTAL_VISITORS; i += BATCH_SIZE) {
+    const batch = Array.from({ length: Math.min(BATCH_SIZE, TOTAL_VISITORS - i) }, () => ({
+      visitedAt: new Date(now - Math.random() * TWELVE_MONTHS),
+      path: paths[Math.floor(Math.random() * paths.length)],
+    }));
+    await prisma.visitorLog.createMany({ data: batch });
+  }
+  console.log(`Seeded ${TOTAL_VISITORS.toLocaleString()} visitor logs`);
+
   // Seed admin user
   const adminEmail = process.env.SEED_ADMIN_EMAIL;
   const adminPassword = process.env.SEED_ADMIN_PASSWORD;

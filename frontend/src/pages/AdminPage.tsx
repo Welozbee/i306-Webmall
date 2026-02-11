@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 import { apiFetch } from "../lib/api";
+import { useToast } from "../components/Toast";
 import { Store, Car, BarChart3, Save, Plus, Trash2, Edit3, X } from "lucide-react";
 
 interface Shop {
@@ -83,6 +84,7 @@ export default function AdminPage() {
 }
 
 function ShopsAdmin() {
+  const { toast } = useToast();
   const [shops, setShops] = useState<Shop[]>([]);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [showCreate, setShowCreate] = useState(false);
@@ -104,11 +106,12 @@ function ShopsAdmin() {
       }
       const updated = await apiFetch<Shop[]>("/shop");
       setShops(updated);
+      toast(editingId ? "Boutique modifiée" : "Boutique créée");
       setEditingId(null);
       setShowCreate(false);
       setForm({ name: "", floor: 0, category: "", storeNumber: "", phone: "", url: "", openingHours: "11:00-19:00" });
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Erreur");
+      toast(err instanceof Error ? err.message : "Erreur", "error");
     }
   };
 
@@ -131,8 +134,9 @@ function ShopsAdmin() {
     try {
       await apiFetch(`/shop/${id}`, { method: "DELETE" });
       setShops(shops.filter((s) => s.id !== id));
+      toast("Boutique supprimée");
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Erreur");
+      toast(err instanceof Error ? err.message : "Erreur", "error");
     }
   };
 
@@ -148,7 +152,7 @@ function ShopsAdmin() {
         <p className="text-sm text-gray-500">{shops.length} boutiques</p>
         <button
           onClick={() => { setShowCreate(true); setEditingId(null); }}
-          className="flex items-center gap-1 bg-fox-orange text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600 transition"
+          className="flex items-center gap-1 bg-fox-orange text-white px-4 py-2 rounded-md text-sm hover:bg-orange-600 transition"
         >
           <Plus size={16} />
           Ajouter
@@ -156,7 +160,7 @@ function ShopsAdmin() {
       </div>
 
       {showCreate && (
-        <div className="bg-orange-50 rounded-xl p-6 mb-6 border border-orange-200">
+        <div className="bg-orange-50 rounded-lg p-6 mb-6 border border-orange-200">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-semibold text-gray-800">
               {editingId ? "Modifier la boutique" : "Nouvelle boutique"}
@@ -170,49 +174,49 @@ function ShopsAdmin() {
               placeholder="Nom"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="px-3 py-2 border border-gray-200 rounded-lg text-sm"
+              className="px-3 py-2 border border-gray-200 rounded-md text-sm"
             />
             <input
               type="number"
               placeholder="Étage"
               value={form.floor}
               onChange={(e) => setForm({ ...form, floor: Number(e.target.value) })}
-              className="px-3 py-2 border border-gray-200 rounded-lg text-sm"
+              className="px-3 py-2 border border-gray-200 rounded-md text-sm"
             />
             <input
               placeholder="Catégorie"
               value={form.category}
               onChange={(e) => setForm({ ...form, category: e.target.value })}
-              className="px-3 py-2 border border-gray-200 rounded-lg text-sm"
+              className="px-3 py-2 border border-gray-200 rounded-md text-sm"
             />
             <input
               placeholder="N° boutique"
               value={form.storeNumber}
               onChange={(e) => setForm({ ...form, storeNumber: e.target.value })}
-              className="px-3 py-2 border border-gray-200 rounded-lg text-sm"
+              className="px-3 py-2 border border-gray-200 rounded-md text-sm"
             />
             <input
               placeholder="Téléphone"
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              className="px-3 py-2 border border-gray-200 rounded-lg text-sm"
+              className="px-3 py-2 border border-gray-200 rounded-md text-sm"
             />
             <input
               placeholder="URL site web"
               value={form.url}
               onChange={(e) => setForm({ ...form, url: e.target.value })}
-              className="px-3 py-2 border border-gray-200 rounded-lg text-sm"
+              className="px-3 py-2 border border-gray-200 rounded-md text-sm"
             />
             <input
               placeholder="Horaires"
               value={form.openingHours}
               onChange={(e) => setForm({ ...form, openingHours: e.target.value })}
-              className="px-3 py-2 border border-gray-200 rounded-lg text-sm"
+              className="px-3 py-2 border border-gray-200 rounded-md text-sm"
             />
           </div>
           <button
             onClick={handleSave}
-            className="mt-4 flex items-center gap-1 bg-fox-orange text-white px-6 py-2 rounded-lg text-sm hover:bg-orange-600 transition"
+            className="mt-4 flex items-center gap-1 bg-fox-orange text-white px-6 py-2 rounded-md text-sm hover:bg-orange-600 transition"
           >
             <Save size={16} />
             {editingId ? "Enregistrer" : "Créer"}
@@ -220,7 +224,7 @@ function ShopsAdmin() {
         </div>
       )}
 
-      <div className="bg-white rounded-xl shadow overflow-hidden">
+      <div className="bg-white rounded-lg shadow overflow-hidden">
         <table className="w-full text-sm">
           <thead className="bg-gray-50">
             <tr>
@@ -266,6 +270,7 @@ function ShopsAdmin() {
 }
 
 function ParkingsAdmin() {
+  const { toast } = useToast();
   const [parkings, setParkings] = useState<Parking[]>([]);
 
   useEffect(() => {
@@ -279,15 +284,16 @@ function ParkingsAdmin() {
         body: JSON.stringify({ availableSpaces }),
       });
       setParkings(parkings.map((p) => (p.id === id ? updated : p)));
+      toast("Parking mis à jour");
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Erreur");
+      toast(err instanceof Error ? err.message : "Erreur", "error");
     }
   };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {parkings.map((parking) => (
-        <div key={parking.id} className="bg-white rounded-xl shadow p-6 border border-gray-100">
+        <div key={parking.id} className="bg-white rounded-lg shadow p-6 border border-gray-100">
           <h3 className="font-semibold text-gray-800 text-lg mb-4">{parking.name}</h3>
           <div className="space-y-3">
             <div>
@@ -301,13 +307,13 @@ function ParkingsAdmin() {
                   const val = Math.min(Math.max(0, Number(e.target.value)), parking.totalSpaces);
                   setParkings(parkings.map((p) => (p.id === parking.id ? { ...p, availableSpaces: val } : p)));
                 }}
-                className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-lg text-sm"
+                className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-md text-sm"
               />
             </div>
             <p className="text-xs text-gray-400">Total: {parking.totalSpaces} places</p>
             <button
               onClick={() => updateParking(parking.id, parking.availableSpaces)}
-              className="flex items-center gap-1 bg-fox-orange text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600 transition"
+              className="flex items-center gap-1 bg-fox-orange text-white px-4 py-2 rounded-md text-sm hover:bg-orange-600 transition"
             >
               <Save size={14} />
               Enregistrer
@@ -339,7 +345,7 @@ function StatsAdmin() {
         <StatCard label="Total" value={stats.total} />
       </div>
 
-      <div className="bg-white rounded-xl shadow p-6">
+      <div className="bg-white rounded-lg shadow p-6">
         <h3 className="font-semibold text-gray-800 mb-4">30 derniers jours</h3>
         <div className="space-y-2">
           {stats.dailyBreakdown.map((day) => (
@@ -369,7 +375,7 @@ function StatsAdmin() {
 
 function StatCard({ label, value }: { label: string; value: number }) {
   return (
-    <div className="bg-white rounded-xl shadow p-6 border border-gray-100 text-center">
+    <div className="bg-white rounded-lg shadow p-6 border border-gray-100 text-center">
       <p className="text-3xl font-bold text-fox-orange">{value.toLocaleString("fr-CH")}</p>
       <p className="text-sm text-gray-500 mt-1">{label}</p>
     </div>

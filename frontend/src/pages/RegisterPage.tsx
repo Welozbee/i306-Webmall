@@ -38,14 +38,14 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4">
-      <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
+      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
         <div className="flex justify-center mb-4">
           <img src="/images/foxtown-icon.svg" alt="FoxTown" className="h-12" />
         </div>
         <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">Créer un compte</h1>
 
         {error && (
-          <div className="bg-red-50 text-red-600 text-sm p-3 rounded-lg mb-4">{error}</div>
+          <div className="bg-red-50 text-red-600 text-sm p-3 rounded-md mb-4">{error}</div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -56,7 +56,7 @@ export default function RegisterPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-fox-orange focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-fox-orange focus:border-transparent"
               placeholder="votre@email.com"
             />
           </div>
@@ -68,7 +68,7 @@ export default function RegisterPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={8}
-              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-fox-orange focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-fox-orange focus:border-transparent"
               placeholder="Minimum 8 caractères"
             />
           </div>
@@ -79,14 +79,14 @@ export default function RegisterPage() {
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-fox-orange focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-fox-orange focus:border-transparent"
               placeholder="Retapez votre mot de passe"
             />
           </div>
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-fox-orange text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition disabled:opacity-50"
+            className="w-full bg-fox-orange text-white py-3 rounded-md font-semibold hover:bg-orange-600 transition disabled:opacity-50"
           >
             {loading ? "Inscription..." : "Créer mon compte"}
           </button>

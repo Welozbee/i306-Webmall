@@ -1,6 +1,9 @@
 import { useState, useEffect, useMemo } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { apiFetch } from "../lib/api";
-import { Search, Phone, ExternalLink, MapPin } from "lucide-react";
+import { Search, Phone, ExternalLink, MapPin, Heart } from "lucide-react";
+import { ShopCardSkeleton } from "../components/Skeleton";
+import { useFavorites } from "../hooks/useFavorites";
 
 interface Shop {
   id: number;
@@ -27,13 +30,25 @@ const FLOOR_NAMES: Record<number, string> = {
 };
 
 export default function BoutiquesPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [shops, setShops] = useState<Shop[]>([]);
-  const [search, setSearch] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedFloor, setSelectedFloor] = useState("all");
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState(searchParams.get("q") || "");
+  const [selectedCategory, setSelectedCategory] = useState(searchParams.get("cat") || "all");
+  const [selectedFloor, setSelectedFloor] = useState(searchParams.get("floor") || "all");
+  const [showFavOnly, setShowFavOnly] = useState(false);
+  const { toggle, isFavorite } = useFavorites();
 
   useEffect(() => {
-    apiFetch<Shop[]>("/shop").then(setShops).catch(() => {});
+    const params: Record<string, string> = {};
+    if (search) params.q = search;
+    if (selectedCategory !== "all") params.cat = selectedCategory;
+    if (selectedFloor !== "all") params.floor = selectedFloor;
+    setSearchParams(params, { replace: true });
+  }, [search, selectedCategory, selectedFloor, setSearchParams]);
+
+  useEffect(() => {
+    apiFetch<Shop[]>("/shop").then(setShops).catch(() => {}).finally(() => setLoading(false));
   }, []);
 
   const categories = useMemo(() => {
@@ -46,16 +61,17 @@ export default function BoutiquesPage() {
       const matchSearch = s.name.toLowerCase().includes(search.toLowerCase());
       const matchCategory = selectedCategory === "all" || s.category === selectedCategory;
       const matchFloor = selectedFloor === "all" || s.floor === Number(selectedFloor);
-      return matchSearch && matchCategory && matchFloor;
+      const matchFav = !showFavOnly || isFavorite(s.id);
+      return matchSearch && matchCategory && matchFloor && matchFav;
     });
-  }, [shops, search, selectedCategory, selectedFloor]);
+  }, [shops, search, selectedCategory, selectedFloor, showFavOnly, isFavorite]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Nos Boutiques</h1>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow p-4 mb-6 flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow p-4 mb-6 flex flex-col md:flex-row gap-4">
         <div className="relative flex-1">
           <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
@@ -63,13 +79,13 @@ export default function BoutiquesPage() {
             placeholder="Rechercher une boutique..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-fox-orange focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-fox-orange focus:border-transparent"
           />
         </div>
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-fox-orange"
+          className="px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-fox-orange"
         >
           <option value="all">Toutes les catégories</option>
           {categories.map((c) => (
@@ -79,7 +95,7 @@ export default function BoutiquesPage() {
         <select
           value={selectedFloor}
           onChange={(e) => setSelectedFloor(e.target.value)}
-          className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-fox-orange"
+          className="px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-fox-orange"
         >
           <option value="all">Tous les niveaux</option>
           <option value="0">Level 0</option>
@@ -87,22 +103,36 @@ export default function BoutiquesPage() {
           <option value="2">Level 2</option>
           <option value="3">Level 3</option>
         </select>
+        <button
+          onClick={() => setShowFavOnly(!showFavOnly)}
+          className={`flex items-center gap-1 px-4 py-2 rounded-md text-sm font-medium border transition ${
+            showFavOnly ? "bg-fox-red/10 border-fox-red/30 text-fox-red" : "border-gray-200 text-gray-500 hover:border-gray-300"
+          }`}
+        >
+          <Heart size={14} className={showFavOnly ? "fill-fox-red" : ""} />
+          Favoris
+        </button>
       </div>
 
       <p className="text-sm text-gray-500 mb-4">{filtered.length} boutique{filtered.length > 1 ? "s" : ""} trouvée{filtered.length > 1 ? "s" : ""}</p>
 
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {filtered.map((shop) => (
-          <div
+        {loading && Array.from({ length: 12 }).map((_, i) => <ShopCardSkeleton key={i} />)}
+        {!loading && filtered.map((shop) => (
+          <Link
+            to={`/boutiques/${shop.id}`}
             key={shop.id}
-            className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 hover:shadow-md transition"
+            className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 hover:shadow-lg hover:scale-[1.02] transition-all duration-200 block"
           >
             <div className="flex items-start justify-between mb-2">
-              <h3 className="font-semibold text-gray-800 text-sm">{shop.name}</h3>
-              {shop.storeNumber && (
-                <span className="text-xs text-gray-400 font-mono">#{shop.storeNumber}</span>
-              )}
+              <h3 className="font-semibold text-gray-800 text-sm flex-1">{shop.name}</h3>
+              <button
+                onClick={(e) => { e.preventDefault(); toggle(shop.id); }}
+                className="ml-2 text-gray-300 hover:text-fox-red transition shrink-0"
+              >
+                <Heart size={14} className={isFavorite(shop.id) ? "fill-fox-red text-fox-red" : ""} />
+              </button>
             </div>
 
             <div className="flex flex-wrap gap-2 mb-3">
@@ -131,11 +161,11 @@ export default function BoutiquesPage() {
                 </a>
               )}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
-      {filtered.length === 0 && (
+      {!loading && filtered.length === 0 && (
         <div className="text-center py-12 text-gray-400">
           Aucune boutique trouvée pour ces critères.
         </div>

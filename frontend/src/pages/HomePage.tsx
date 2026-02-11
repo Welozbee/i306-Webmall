@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { apiFetch } from "../lib/api";
 import ScratchCard from "../components/ScratchCard";
+import Confetti from "../components/Confetti";
+import WinBanner from "../components/WinBanner";
+import { useInView } from "../hooks/useInView";
+import { useCountUp } from "../hooks/useCountUp";
 import { Store, Map, Car, Gift, ChevronRight, Users } from "lucide-react";
 
 interface GameStatus {
@@ -35,15 +39,25 @@ export default function HomePage() {
   const [gameResult, setGameResult] = useState<GameResult | null>(null);
   const [playing, setPlaying] = useState(false);
   const [revealed, setRevealed] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const [monthlyVisitors, setMonthlyVisitors] = useState<number | null>(null);
   const [totalParking, setTotalParking] = useState<number | null>(null);
+  const animatedVisitors = useCountUp(monthlyVisitors);
+  const animatedParking = useCountUp(totalParking);
 
   useEffect(() => {
     if (user) {
       apiFetch<GameStatus>("/game/status").then(setGameStatus).catch(() => {});
     }
   }, [user]);
+
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     apiFetch<{ count: number }>("/visitors/monthly")
@@ -72,6 +86,10 @@ export default function HomePage() {
 
   const handleScratchComplete = () => {
     setRevealed(true);
+    if (gameResult?.won) {
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 4000);
+    }
     if (user) {
       apiFetch<GameStatus>("/game/status").then(setGameStatus).catch(() => {});
     }
@@ -83,39 +101,49 @@ export default function HomePage() {
     setGameResult(null);
   };
 
+  const gameSection = useInView();
+  const linksSection = useInView();
+
   return (
     <div className="min-h-screen">
+      {showConfetti && <Confetti />}
+      <WinBanner />
       {/* Hero with image */}
-      <section className="relative">
+      <section className="relative overflow-hidden">
         <img
           src="/images/accueil.jpg"
           alt="FoxTown Factory Stores"
-          className="w-full h-[500px] object-cover"
+          className="w-full h-[300px] md:h-[500px] object-cover scale-110"
+          style={{ transform: `translateY(${scrollY * 0.3}px) scale(1.1)` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
           <img src="/images/foxtown-icon.svg" alt="FoxTown" className="h-20 md:h-28 mb-3 drop-shadow-lg" />
-          <p className="text-lg opacity-90 mt-1 drop-shadow">
+          <p className="text-sm md:text-lg opacity-90 mt-1 drop-shadow px-4 text-center">
             Le paradis du shopping &middot; 160 boutiques &middot; 250 marques
           </p>
         </div>
 
-        {/* Floating stats */}
-        <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-4 translate-y-1/2 px-4">
-          <div className="bg-white rounded-xl shadow-lg px-6 py-4 flex items-center gap-3 border border-gray-100">
-            <Users className="text-fox-orange" size={28} />
+        {/* Floating stats - desktop only */}
+        <div className="hidden sm:flex absolute bottom-0 left-0 right-0 justify-center gap-4 translate-y-1/2 px-4">
+          <div className="bg-white rounded-lg shadow-lg px-6 py-4 flex items-center gap-3 border border-gray-100">
+            <Users className="text-fox-orange shrink-0" size={28} />
             <div>
               <p className="text-2xl font-bold text-gray-800">
-                {monthlyVisitors !== null ? monthlyVisitors.toLocaleString("fr-CH") : "..."}
+                {monthlyVisitors !== null ? animatedVisitors.toLocaleString("fr-CH") : "..."}
               </p>
               <p className="text-xs text-gray-500">Visiteurs ce mois</p>
             </div>
           </div>
-          <div className="bg-white rounded-xl shadow-lg px-6 py-4 flex items-center gap-3 border border-gray-100">
-            <Car className="text-fox-orange" size={28} />
+          <div className="bg-white rounded-lg shadow-lg px-6 py-4 flex items-center gap-3 border border-gray-100">
+            <Car className="text-fox-orange shrink-0" size={28} />
             <div>
-              <p className="text-2xl font-bold text-gray-800">
-                {totalParking !== null ? totalParking.toLocaleString("fr-CH") : "..."}
+              <p className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                {totalParking !== null ? animatedParking.toLocaleString("fr-CH") : "..."}
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                </span>
               </p>
               <p className="text-xs text-gray-500">Places de parking libres</p>
             </div>
@@ -123,8 +151,34 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Stats mobile - inline between hero and game */}
+      <div className="flex sm:hidden gap-3 px-4 py-4 bg-white">
+        <div className="flex-1 flex items-center gap-2 rounded-lg border border-gray-100 px-3 py-3 shadow-sm">
+          <Users className="text-fox-orange shrink-0" size={20} />
+          <div>
+            <p className="text-lg font-bold text-gray-800">
+              {monthlyVisitors !== null ? animatedVisitors.toLocaleString("fr-CH") : "..."}
+            </p>
+            <p className="text-xs text-gray-500">Visiteurs ce mois</p>
+          </div>
+        </div>
+        <div className="flex-1 flex items-center gap-2 rounded-lg border border-gray-100 px-3 py-3 shadow-sm">
+          <Car className="text-fox-orange shrink-0" size={20} />
+          <div>
+            <p className="text-lg font-bold text-gray-800 flex items-center gap-1.5">
+              {totalParking !== null ? animatedParking.toLocaleString("fr-CH") : "..."}
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+            </p>
+            <p className="text-xs text-gray-500">Places libres</p>
+          </div>
+        </div>
+      </div>
+
       {/* Game Section */}
-      <section className="pt-16 pb-12 bg-orange-50">
+      <section ref={gameSection.ref} className={`pt-8 sm:pt-16 pb-12 bg-fox-red/5 transition-all duration-700 ${gameSection.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-8">
             <Gift className="inline-block text-fox-orange mb-2" size={40} />
@@ -134,11 +188,11 @@ export default function HomePage() {
 
           <div className="flex flex-col items-center">
             {!user ? (
-              <div className="bg-white rounded-xl p-8 shadow text-center max-w-md">
+              <div className="bg-white rounded-lg p-8 shadow text-center max-w-md">
                 <p className="text-gray-600 mb-4">Connectez-vous pour participer au jeu quotidien !</p>
                 <Link
                   to="/login"
-                  className="inline-block bg-fox-orange text-white px-6 py-3 rounded-lg font-medium hover:bg-orange-600 transition"
+                  className="inline-block bg-fox-orange text-white px-6 py-3 rounded-md font-medium hover:bg-orange-600 transition"
                 >
                   Se connecter
                 </Link>
@@ -162,7 +216,7 @@ export default function HomePage() {
                     {gameResult.canPlayAgain && (
                       <button
                         onClick={resetGame}
-                        className="mt-3 bg-fox-orange text-white px-6 py-2 rounded-lg font-medium hover:bg-orange-600 transition"
+                        className="mt-3 bg-fox-orange text-white px-6 py-2 rounded-md font-medium hover:bg-orange-600 transition"
                       >
                         Tenter ma 2ème chance !
                       </button>
@@ -171,7 +225,7 @@ export default function HomePage() {
                 )}
               </div>
             ) : gameStatus?.canPlay ? (
-              <div className="bg-white rounded-xl p-8 shadow text-center max-w-md">
+              <div className="bg-white rounded-lg p-8 shadow text-center max-w-md">
                 <p className="text-gray-600 mb-2">
                   {gameStatus.attempt === 1
                     ? "Vous avez 1 tentative aujourd'hui !"
@@ -183,13 +237,13 @@ export default function HomePage() {
                 <button
                   onClick={startGame}
                   disabled={loading}
-                  className="bg-fox-orange text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition disabled:opacity-50"
+                  className="bg-fox-orange text-white px-8 py-3 rounded-md font-semibold hover:bg-orange-600 transition disabled:opacity-50"
                 >
                   {loading ? "Chargement..." : "Gratter ma carte !"}
                 </button>
               </div>
             ) : (
-              <div className="bg-white rounded-xl p-8 shadow text-center max-w-md">
+              <div className="bg-white rounded-lg p-8 shadow text-center max-w-md">
                 {gameStatus?.todaysPlays.some((p) => p.won) ? (
                   <>
                     <div className="text-4xl mb-2">🎉</div>
@@ -213,12 +267,12 @@ export default function HomePage() {
       </section>
 
       {/* Quick Links */}
-      <section className="py-12">
+      <section ref={linksSection.ref} className={`py-12 transition-all duration-700 delay-100 ${linksSection.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
               to="/boutiques"
-              className="bg-white rounded-xl p-6 shadow hover:shadow-lg transition group border border-gray-100"
+              className="bg-white rounded-lg p-6 shadow hover:shadow-lg transition group border border-gray-100"
             >
               <Store className="text-fox-orange mb-3" size={32} />
               <h3 className="text-xl font-semibold text-gray-800 group-hover:text-fox-orange transition">
@@ -234,7 +288,7 @@ export default function HomePage() {
 
             <Link
               to="/plan"
-              className="bg-white rounded-xl p-6 shadow hover:shadow-lg transition group border border-gray-100"
+              className="bg-white rounded-lg p-6 shadow hover:shadow-lg transition group border border-gray-100"
             >
               <Map className="text-fox-orange mb-3" size={32} />
               <h3 className="text-xl font-semibold text-gray-800 group-hover:text-fox-orange transition">
@@ -250,7 +304,7 @@ export default function HomePage() {
 
             <Link
               to="/parkings"
-              className="bg-white rounded-xl p-6 shadow hover:shadow-lg transition group border border-gray-100"
+              className="bg-white rounded-lg p-6 shadow hover:shadow-lg transition group border border-gray-100"
             >
               <Car className="text-fox-orange mb-3" size={32} />
               <h3 className="text-xl font-semibold text-gray-800 group-hover:text-fox-orange transition">

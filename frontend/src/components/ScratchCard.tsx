@@ -19,14 +19,18 @@ export default function ScratchCard({ width = 300, height = 200, onComplete, res
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Draw scratch surface
+    // Draw gradient scratch surface
     ctx.globalCompositeOperation = "source-over";
-    ctx.fillStyle = "#d1d5db";
+    const gradient = ctx.createLinearGradient(0, 0, width, height);
+    gradient.addColorStop(0, "#f68b1f");
+    gradient.addColorStop(0.5, "#c32d39");
+    gradient.addColorStop(1, "#f68b1f");
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 
     // Add pattern
-    ctx.fillStyle = "#9ca3af";
-    ctx.font = "14px sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.15)";
+    ctx.font = "14px Inter, sans-serif";
     ctx.textAlign = "center";
     for (let y = 30; y < height; y += 40) {
       for (let x = 40; x < width; x += 100) {
@@ -35,8 +39,8 @@ export default function ScratchCard({ width = 300, height = 200, onComplete, res
     }
 
     // Instruction
-    ctx.fillStyle = "#4b5563";
-    ctx.font = "bold 18px sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.9)";
+    ctx.font = "bold 18px Inter, sans-serif";
     ctx.textAlign = "center";
     ctx.fillText("Grattez ici !", width / 2, height / 2 + 6);
   }, [width, height]);
@@ -96,7 +100,7 @@ export default function ScratchCard({ width = 300, height = 200, onComplete, res
   const handleEnd = () => setIsScratching(false);
 
   return (
-    <div className="relative inline-block rounded-xl overflow-hidden shadow-lg border-2 border-fox-orange" style={{ width, height }}>
+    <div className="relative inline-block rounded-lg overflow-hidden shadow-lg border-2 border-fox-orange" style={{ width, height }}>
       {/* Result underneath - only visible once revealed */}
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-white p-4">
         {revealed && result ? (
