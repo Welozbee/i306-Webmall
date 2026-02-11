@@ -206,14 +206,12 @@ const stores = [
 ];
 
 async function main() {
-  // Clean existing data
   await prisma.gamePlay.deleteMany();
   await prisma.prize.deleteMany();
   await prisma.visitorLog.deleteMany();
   await prisma.shopImage.deleteMany();
   await prisma.shop.deleteMany();
 
-  // Seed all shops
   for (const store of stores) {
     await prisma.shop.create({
       data: {
@@ -230,7 +228,6 @@ async function main() {
   }
   console.log(`Seeded ${stores.length} shops`);
 
-  // Seed parkings
   const parkings = [
     { name: "Parking Nord", totalSpaces: 500, availableSpaces: 342 },
     { name: "Parking Sud", totalSpaces: 400, availableSpaces: 215 },
@@ -247,7 +244,6 @@ async function main() {
   }
   console.log(`Seeded ${parkings.length} parkings`);
 
-  // Seed prizes
   const prizes = [
     { name: "Bon d'achat Nike 20 CHF", description: "Bon d'achat de 20 CHF chez Nike Factory Store", shopName: "Nike Factory Store" },
     { name: "Bon d'achat Lindt 10 CHF", description: "Bon d'achat de 10 CHF chez Lindt", shopName: "Lindt - Maître Chocolatier Suisse depuis 1845" },
@@ -263,7 +259,6 @@ async function main() {
   }
   console.log(`Seeded ${prizes.length} prizes`);
 
-  // Seed 100k visitor logs spread over the last 12 months
   const TOTAL_VISITORS = 100_000;
   const BATCH_SIZE = 1000;
   const now = Date.now();
@@ -279,7 +274,6 @@ async function main() {
   }
   console.log(`Seeded ${TOTAL_VISITORS.toLocaleString()} visitor logs`);
 
-  // Seed admin user
   const adminEmail = process.env.SEED_ADMIN_EMAIL;
   const adminPassword = process.env.SEED_ADMIN_PASSWORD;
   if (adminEmail && adminPassword) {

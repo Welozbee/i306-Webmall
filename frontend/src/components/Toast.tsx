@@ -21,6 +21,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   const toast = useCallback((message: string, type: Toast["type"] = "success") => {
+    // Empile un toast auto-expirant pour garder l'interface non bloquante.
     const id = nextId++;
     setToasts((prev) => [...prev, { id, message, type }]);
     setTimeout(() => {

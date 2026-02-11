@@ -87,7 +87,6 @@ export default function BoutiqueDetailPage() {
       </Link>
 
       <div className="bg-white rounded-lg shadow border border-gray-100 overflow-hidden">
-        {/* Header */}
         <div className="bg-fox-orange/5 px-6 py-8">
           <div className="flex items-center gap-4">
             {shop.logoUrl ? (
@@ -117,7 +116,6 @@ export default function BoutiqueDetailPage() {
           </div>
         </div>
 
-        {/* Images */}
         {images.length > 0 && (
           <div className="px-6 pt-6">
             <div className="grid grid-cols-2 gap-3">
@@ -128,7 +126,6 @@ export default function BoutiqueDetailPage() {
           </div>
         )}
 
-        {/* Info */}
         <div className="px-6 py-6 space-y-4">
           {shop.openingHours && (
             <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -151,7 +148,6 @@ export default function BoutiqueDetailPage() {
         </div>
       </div>
 
-      {/* Similar shops */}
       {similar.length > 0 && (
         <div className="mt-8">
           <h2 className="text-lg font-semibold text-gray-800 mb-4">Boutiques similaires</h2>

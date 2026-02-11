@@ -13,9 +13,11 @@ fs.mkdirSync(uploadsDir, { recursive: true });
 
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => {
+    // Centralise tous les médias boutiques dans le même répertoire persistant.
     cb(null, uploadsDir);
   },
   filename: (_req, file, cb) => {
+    // Nom unique pour éviter d'écraser des médias déjà publiés.
     const ext = path.extname(file.originalname);
     const name = `${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`;
     cb(null, name);
@@ -25,6 +27,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get("/:id/images", async (req, res) => {
+  // Retourne le logo + la galerie d'une boutique pour sa fiche détaillée.
   const id = Number(req.params.id);
   if (Number.isNaN(id)) {
     res.status(400).json({ error: "Invalid shop id" });
@@ -66,6 +69,7 @@ router.post(
   authorize(Role.EMPLOYEE, Role.ADMIN),
   upload.single("image"),
   async (req, res) => {
+    // Ajoute une image de galerie depuis le back-office.
     const id = Number(req.params.id);
     if (Number.isNaN(id)) {
       res.status(400).json({ error: "Invalid shop id" });
@@ -104,6 +108,7 @@ router.post(
   authorize(Role.EMPLOYEE, Role.ADMIN),
   upload.single("image"),
   async (req, res) => {
+    // Remplace le logo boutique affiché sur les pages listing/détail.
     const id = Number(req.params.id);
     if (Number.isNaN(id)) {
       res.status(400).json({ error: "Invalid shop id" });

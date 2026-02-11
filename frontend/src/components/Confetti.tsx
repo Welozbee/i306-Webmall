@@ -12,6 +12,7 @@ interface Particle {
 }
 
 export default function Confetti() {
+  // Effet visuel déclenché après un gain pour renforcer la récompense perçue.
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {

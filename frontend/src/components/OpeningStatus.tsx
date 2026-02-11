@@ -5,6 +5,7 @@ const OPEN_HOUR = 11;
 const CLOSE_HOUR = 19;
 
 function getStatus() {
+  // Calcule l'état d'ouverture affiché en footer pour orienter la visite en temps réel.
   const now = new Date();
   const h = now.getHours();
   const m = now.getMinutes();

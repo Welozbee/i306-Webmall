@@ -52,7 +52,6 @@ export default function AdminPage() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Administration</h1>
 
-      {/* Tabs */}
       <div className="flex gap-2 mb-6 border-b border-gray-200">
         <button
           onClick={() => setTab("shops")}
@@ -114,6 +113,7 @@ function ShopsAdmin() {
   }, []);
 
   const handleSave = async () => {
+    // Crée ou met à jour une boutique selon le mode en cours.
     try {
       if (editingId) {
         await apiFetch(`/shop/${editingId}`, { method: "PUT", body: JSON.stringify(form) });
@@ -149,6 +149,7 @@ function ShopsAdmin() {
   };
 
   const handleDelete = async (id: number) => {
+    // Supprime une boutique après confirmation opérateur.
     if (!confirm("Supprimer cette boutique ?")) return;
     try {
       await apiFetch(`/shop/${id}`, { method: "DELETE" });
@@ -297,6 +298,7 @@ function ParkingsAdmin() {
   }, []);
 
   const updateParking = async (id: number, availableSpaces: number) => {
+    // Persiste la nouvelle disponibilité remontée par l'équipe terrain.
     try {
       const updated = await apiFetch<Parking>(`/parking/${id}`, {
         method: "PUT",
@@ -402,6 +404,7 @@ function StatCard({ label, value }: { label: string; value: number }) {
 }
 
 function UsersAdmin({ currentUserId }: { currentUserId: number }) {
+  // Administration des rôles pour contrôler les permissions de l'application.
   const { toast } = useToast();
   const [users, setUsers] = useState<UserItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -414,6 +417,7 @@ function UsersAdmin({ currentUserId }: { currentUserId: number }) {
   }, []);
 
   const updateRole = async (userId: number, newRole: UserItem["role"]) => {
+    // Applique un nouveau rôle utilisateur avec retour immédiat dans la liste.
     try {
       const updated = await apiFetch<UserItem>(`/users/${userId}/role`, {
         method: "PUT",

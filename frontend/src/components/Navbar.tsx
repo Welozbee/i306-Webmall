@@ -1,27 +1,17 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { apiFetch } from "../lib/api";
-import { Store, Map, Car, Home, LogIn, LogOut, Settings, User, Gift, Search, X } from "lucide-react";
-
-interface Shop {
-  id: number;
-  name: string;
-  floor: number;
-  category: string;
-}
+import { Store, Map, Car, Home, LogIn, LogOut, Settings, User, Gift } from "lucide-react";
 
 export default function Navbar() {
   const { user, logout, isEmployee } = useAuth();
   const location = useLocation();
-  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [shops, setShops] = useState<Shop[]>([]);
-  const [results, setResults] = useState<Shop[]>([]);
-  const searchRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [mobileUserMenuOpen, setMobileUserMenuOpen] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  const mobileUserMenuRef = useRef<HTMLDivElement>(null);
+  const mobileUserToggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -30,32 +20,20 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    apiFetch<Shop[]>("/shop").then(setShops).catch(() => {});
-  }, []);
-
-  useEffect(() => {
-    if (searchQuery.length < 2) {
-      setResults([]);
-      return;
-    }
-    const q = searchQuery.toLowerCase();
-    setResults(shops.filter((s) => s.name.toLowerCase().includes(q)).slice(0, 6));
-  }, [searchQuery, shops]);
-
-  useEffect(() => {
-    setSearchOpen(false);
-    setSearchQuery("");
+    setUserMenuOpen(false);
+    setMobileUserMenuOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
-    if (searchOpen) inputRef.current?.focus();
-  }, [searchOpen]);
-
-  useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
-        setSearchOpen(false);
-        setSearchQuery("");
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+      // Sur mobile, le bouton "Compte" et le panneau font partie de la même zone interactive.
+      const clickedInsideMobileMenu = mobileUserMenuRef.current?.contains(e.target as Node);
+      const clickedMobileToggle = mobileUserToggleRef.current?.contains(e.target as Node);
+      if (!clickedInsideMobileMenu && !clickedMobileToggle) {
+        setMobileUserMenuOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClick);
@@ -65,21 +43,13 @@ export default function Navbar() {
   const isActive = (path: string) =>
     location.pathname === path ? "text-white font-bold border-b-2 border-white" : "text-white/80 hover:text-white";
 
-  const goToShop = (id: number) => {
-    navigate(`/boutiques/${id}`);
-    setSearchOpen(false);
-    setSearchQuery("");
-  };
-
   return (
     <header className={`bg-fox-orange sticky top-0 z-50 transition-shadow duration-300 ${scrolled ? "shadow-lg" : "shadow-sm"}`}>
       <div className="px-6 h-16 grid grid-cols-3 items-center">
-        {/* Logo - left */}
         <Link to="/" className="flex items-center justify-self-start">
           <img src="/images/foxtown-logo.png" alt="FoxTown" className="h-10" />
         </Link>
 
-        {/* Nav - center */}
         <nav className="hidden md:flex items-center justify-self-center gap-6">
           <Link to="/" className={`flex items-center gap-1 py-5 text-sm font-medium transition ${isActive("/")}`}>
             <Home size={16} />
@@ -99,88 +69,57 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        {/* User actions - right (desktop only) */}
-        <div className="hidden md:flex items-center justify-self-end gap-3">
-          {/* Search */}
-          <div ref={searchRef} className="relative">
-            {searchOpen ? (
-              <div className="flex items-center gap-2">
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Rechercher..."
-                  className="w-48 px-3 py-1.5 text-sm rounded-md bg-white/90 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
-                />
-                <button onClick={() => { setSearchOpen(false); setSearchQuery(""); }} className="text-white/70 hover:text-white">
-                  <X size={16} />
-                </button>
-                {results.length > 0 && (
-                  <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-md shadow-lg border border-gray-100 overflow-hidden z-50">
-                    {results.map((shop) => (
-                      <button
-                        key={shop.id}
-                        onClick={() => goToShop(shop.id)}
-                        className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-orange-50 flex items-center justify-between"
-                      >
-                        <span>{shop.name}</span>
-                        <span className="text-xs text-gray-400">Level {shop.floor}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <button onClick={() => setSearchOpen(true)} className="text-white/80 hover:text-white transition">
-                <Search size={18} />
-              </button>
-            )}
-          </div>
-
+        <div className="hidden md:flex items-center justify-self-end">
           {user ? (
-            <>
-              <span className="text-sm text-white/80">
-                <User size={14} className="inline mr-1" />
-                {user.email}
-              </span>
-              <Link
-                to="/rewards"
-                className="text-sm text-white hover:underline flex items-center gap-1"
-              >
-                <Gift size={14} />
-                Mes bons
-              </Link>
-              {isEmployee && (
-                <Link
-                  to="/admin"
-                  className="text-sm text-white hover:underline flex items-center gap-1"
-                >
-                  <Settings size={14} />
-                  Admin
-                </Link>
-              )}
+            <div ref={userMenuRef} className="relative">
               <button
-                onClick={logout}
-                className="text-sm text-white/70 hover:text-white flex items-center gap-1"
+                onClick={() => setUserMenuOpen((open) => !open)}
+                className="text-sm text-white hover:text-white/80 flex items-center gap-1 max-w-52"
               >
-                <LogOut size={14} />
-                Déconnexion
+                <User size={14} />
+                <span className="truncate">{user.email}</span>
               </button>
-            </>
+
+              {userMenuOpen && (
+                <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 overflow-hidden z-50">
+                  <Link
+                    to="/rewards"
+                    className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-orange-50 flex items-center gap-2"
+                  >
+                    <Gift size={14} />
+                    Mes bons
+                  </Link>
+                  {isEmployee && (
+                    <Link
+                      to="/admin"
+                      className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-orange-50 flex items-center gap-2"
+                    >
+                      <Settings size={14} />
+                      Admin
+                    </Link>
+                  )}
+                  <button
+                    onClick={logout}
+                    className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-orange-50 flex items-center gap-2"
+                  >
+                    <LogOut size={14} />
+                    Déconnexion
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
             <Link
               to="/login"
               className="bg-white text-fox-orange px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-50 transition flex items-center gap-1"
             >
               <LogIn size={14} />
-              Connexion
+              Se connecter
             </Link>
           )}
         </div>
       </div>
 
-      {/* Mobile nav */}
       <nav className="flex md:hidden justify-around pb-2 border-t border-white/20 pt-2">
         <Link to="/" className={`flex flex-col items-center text-xs ${isActive("/")}`}>
           <Home size={18} />
@@ -199,18 +138,14 @@ export default function Navbar() {
           Parkings
         </Link>
         {user ? (
-          <>
-            <Link to="/rewards" className={`flex flex-col items-center text-xs ${isActive("/rewards")}`}>
-              <Gift size={18} />
-              Bons
-            </Link>
-            {isEmployee && (
-              <Link to="/admin" className={`flex flex-col items-center text-xs ${isActive("/admin")}`}>
-                <Settings size={18} />
-                Admin
-              </Link>
-            )}
-          </>
+          <button
+            ref={mobileUserToggleRef}
+            onClick={() => setMobileUserMenuOpen((open) => !open)}
+            className="flex flex-col items-center text-xs text-white/80 hover:text-white"
+          >
+            <User size={18} />
+            Compte
+          </button>
         ) : (
           <Link to="/login" className={`flex flex-col items-center text-xs ${isActive("/login")}`}>
             <LogIn size={18} />
@@ -218,6 +153,43 @@ export default function Navbar() {
           </Link>
         )}
       </nav>
+      {user && (
+        <div
+          ref={mobileUserMenuRef}
+          className={`md:hidden border-t border-white/20 bg-fox-orange px-4 overflow-hidden transition-all duration-200 ease-out ${
+            mobileUserMenuOpen
+              ? "max-h-64 opacity-100 py-3 translate-y-0"
+              : "max-h-0 opacity-0 py-0 -translate-y-1 pointer-events-none"
+          }`}
+        >
+          <p className="text-sm text-white/90 truncate mb-2">
+            Connecté: {user.email}
+          </p>
+          <Link
+            to="/rewards"
+            className="w-full text-left px-3 py-2 text-sm rounded-md bg-white/10 text-white flex items-center gap-2 mb-2"
+          >
+            <Gift size={14} />
+            Mes bons
+          </Link>
+          {isEmployee && (
+            <Link
+              to="/admin"
+              className="w-full text-left px-3 py-2 text-sm rounded-md bg-white/10 text-white flex items-center gap-2 mb-2"
+            >
+              <Settings size={14} />
+              Admin
+            </Link>
+          )}
+          <button
+            onClick={logout}
+            className="w-full text-left px-3 py-2 text-sm rounded-md bg-white text-fox-orange flex items-center gap-2"
+          >
+            <LogOut size={14} />
+            Déconnexion
+          </button>
+        </div>
+      )}
     </header>
   );
 }

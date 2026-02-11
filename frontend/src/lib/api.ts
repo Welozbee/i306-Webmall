@@ -16,7 +16,6 @@ export async function apiFetch<T>(
   const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
 
   if (res.status === 401) {
-    // Try refresh
     const refreshed = await tryRefreshToken();
     if (refreshed) {
       headers["Authorization"] = `Bearer ${localStorage.getItem("accessToken")}`;
@@ -38,6 +37,7 @@ export async function apiFetch<T>(
 }
 
 async function tryRefreshToken(): Promise<boolean> {
+  // Renouvelle la session sans interrompre l'action utilisateur en cours.
   const refreshToken = localStorage.getItem("refreshToken");
   if (!refreshToken) return false;
 

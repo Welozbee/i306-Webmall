@@ -5,7 +5,6 @@ import { authenticate, authorize } from "../middlewares/auth";
 
 const router = express.Router();
 
-// GET /users — list all users (ADMIN only)
 router.get("/", authenticate, authorize(Role.ADMIN), async (_req, res) => {
   try {
     const users = await prisma.user.findMany({
@@ -18,7 +17,6 @@ router.get("/", authenticate, authorize(Role.ADMIN), async (_req, res) => {
   }
 });
 
-// PUT /users/:id/role — update a user's role (ADMIN only)
 router.put("/:id/role", authenticate, authorize(Role.ADMIN), async (req, res) => {
   const id = Number(req.params.id);
   const { role } = req.body ?? {};
@@ -33,7 +31,6 @@ router.put("/:id/role", authenticate, authorize(Role.ADMIN), async (req, res) =>
     return;
   }
 
-  // Prevent admin from demoting themselves
   if (req.user && req.user.id === id) {
     res.status(400).json({ error: "Vous ne pouvez pas modifier votre propre rôle" });
     return;

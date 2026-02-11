@@ -19,6 +19,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import { useEffect } from "react";
 
 function VisitorTracker() {
+  // Compte une visite unique par session navigateur pour les stats globales.
   useEffect(() => {
     const alreadyTracked = sessionStorage.getItem("foxtown_visited");
     if (alreadyTracked) return;

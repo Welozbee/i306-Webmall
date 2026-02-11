@@ -27,6 +27,7 @@ export default function ParkingsPage() {
   }, []);
 
   const getOccupancyColor = (available: number, total: number) => {
+    // Code couleur métier selon le taux de disponibilité.
     const ratio = available / total;
     if (ratio > 0.5) return "text-green-600";
     if (ratio > 0.2) return "text-orange-500";

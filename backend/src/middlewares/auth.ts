@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import { Role } from "../../generated/prisma/client";
 
 function getJwtSecret(res: Response): string | null {
+  // Bloque l'authentification si la clé serveur n'est pas configurée.
   const secret = process.env.JWT_SECRET;
   if (!secret) {
     res.status(500).json({ error: "JWT secret not configured" });
@@ -12,6 +13,7 @@ function getJwtSecret(res: Response): string | null {
 }
 
 export function authenticate(req: Request, res: Response, next: NextFunction) {
+  // Vérifie le bearer token puis hydrate req.user pour les routes protégées.
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     res
@@ -53,6 +55,7 @@ export function authenticate(req: Request, res: Response, next: NextFunction) {
 
 export function authorize(...roles: Role[]) {
   return (req: Request, res: Response, next: NextFunction) => {
+    // Refuse l'accès si le rôle de l'utilisateur ne correspond pas au périmètre attendu.
     if (!req.user) {
       res.status(401).json({ error: "Authentication required" });
       return;

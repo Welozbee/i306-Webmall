@@ -48,6 +48,7 @@ export default function HomePage() {
   const animatedParking = useCountUp(totalParking);
 
   useEffect(() => {
+    // Charge l'état de jeu du visiteur connecté (tentative restante, gains, etc.).
     if (user) {
       apiFetch<GameStatus>("/game/status").then(setGameStatus).catch(() => {});
     }
@@ -72,6 +73,7 @@ export default function HomePage() {
   }, []);
 
   const startGame = async () => {
+    // Déclenche une tentative de jeu et prépare l'affichage de la carte à gratter.
     setLoading(true);
     try {
       const result = await apiFetch<GameResult>("/game/play", { method: "POST" });
@@ -85,6 +87,7 @@ export default function HomePage() {
   };
 
   const handleScratchComplete = () => {
+    // Une fois la carte révélée, met à jour l'UI et rejoue l'état serveur.
     setRevealed(true);
     if (gameResult?.won) {
       setShowConfetti(true);
@@ -96,6 +99,7 @@ export default function HomePage() {
   };
 
   const resetGame = () => {
+    // Réinitialise l'interface pour la 2e chance autorisée.
     setPlaying(false);
     setRevealed(false);
     setGameResult(null);
@@ -108,7 +112,6 @@ export default function HomePage() {
     <div className="min-h-screen">
       {showConfetti && <Confetti />}
       <WinBanner />
-      {/* Hero with image */}
       <section className="relative">
         <div className="overflow-hidden h-[300px] md:h-[500px] bg-black">
           <img
@@ -126,7 +129,6 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* Floating stats */}
         <div className="absolute bottom-0 left-0 right-0 translate-y-1/2 z-10 flex justify-center gap-3 sm:gap-6 px-4">
           <div className="flex items-center gap-2 sm:gap-3 bg-white rounded-lg border border-gray-100 px-3 py-3 sm:px-6 sm:py-4 shadow-lg">
             <Users className="text-fox-orange shrink-0" size={24} />
@@ -153,7 +155,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Game Section */}
       <section ref={gameSection.ref} className={`pt-14 sm:pt-16 pb-12 bg-fox-red/5 transition-all duration-700 ${gameSection.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-8">
@@ -242,7 +243,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quick Links */}
       <section ref={linksSection.ref} className={`py-12 transition-all duration-700 delay-100 ${linksSection.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

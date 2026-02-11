@@ -5,14 +5,12 @@ import { Role } from "../../generated/prisma/client";
 
 const router = Router();
 
-// POST /visitors/track - Track a visit (public, called by frontend)
 router.post("/track", async (req: Request, res: Response) => {
   const path = typeof req.body.path === "string" ? req.body.path : "/";
   await prisma.visitorLog.create({ data: { path } });
   res.json({ ok: true });
 });
 
-// GET /visitors/monthly - Public monthly visitor count
 router.get("/monthly", async (_req: Request, res: Response) => {
   const now = new Date();
   const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -22,7 +20,6 @@ router.get("/monthly", async (_req: Request, res: Response) => {
   res.json({ count });
 });
 
-// GET /visitors/stats - Get visitor statistics (EMPLOYEE/ADMIN)
 router.get(
   "/stats",
   authenticate,
@@ -30,28 +27,23 @@ router.get(
   async (_req: Request, res: Response) => {
     const now = new Date();
 
-    // Today
     const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const todayCount = await prisma.visitorLog.count({
       where: { visitedAt: { gte: todayStart } },
     });
 
-    // This month
     const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
     const monthCount = await prisma.visitorLog.count({
       where: { visitedAt: { gte: monthStart } },
     });
 
-    // This year
     const yearStart = new Date(now.getFullYear(), 0, 1);
     const yearCount = await prisma.visitorLog.count({
       where: { visitedAt: { gte: yearStart } },
     });
 
-    // Total
     const totalCount = await prisma.visitorLog.count();
 
-    // Daily breakdown for last 30 days
     const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
     const dailyVisits = await prisma.$queryRaw<{ date: string; count: bigint }[]>`
       SELECT DATE("visitedAt") as date, COUNT(*) as count

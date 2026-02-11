@@ -16,11 +16,11 @@ interface AuthContextType {
 }
 
 function getUserFromToken(): User | null {
+  // Restaure la session au chargement tant que le token d'accès reste valide.
   try {
     const token = localStorage.getItem("accessToken");
     if (!token) return null;
     const payload = JSON.parse(atob(token.split(".")[1]));
-    // Check expiry
     if (payload.exp && payload.exp * 1000 < Date.now()) {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
@@ -40,6 +40,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(getUserFromToken);
 
   const login = async (email: string, password: string) => {
+    // Ouvre une session complète et met à jour le contexte global.
     const data = await apiFetch<{ accessToken: string; refreshToken: string; user: User }>(
       "/auth/login",
       { method: "POST", body: JSON.stringify({ email, password }) }
@@ -50,6 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const register = async (email: string, password: string) => {
+    // Inscription suivie d'une connexion immédiate pour limiter la friction.
     const data = await apiFetch<{ accessToken: string; refreshToken: string; user: User }>(
       "/auth/register",
       { method: "POST", body: JSON.stringify({ email, password }) }
@@ -60,6 +62,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = () => {
+    // Ferme la session localement et révoque le refresh token côté serveur.
     const refreshToken = localStorage.getItem("refreshToken");
     if (refreshToken) {
       apiFetch("/auth/logout", {

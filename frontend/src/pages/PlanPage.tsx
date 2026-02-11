@@ -34,7 +34,6 @@ export default function PlanPage() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Plan du Centre</h1>
 
-      {/* Floor tabs */}
       <div className="flex gap-2 mb-6">
         {LEVELS.map((level) => (
           <button
@@ -52,7 +51,6 @@ export default function PlanPage() {
         ))}
       </div>
 
-      {/* Selected level shops */}
       {selectedLevel !== null && (
         <div className="bg-white rounded-lg shadow p-6 mb-8 border border-gray-100">
           <h2 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
@@ -74,7 +72,6 @@ export default function PlanPage() {
         </div>
       )}
 
-      {/* Plan display */}
       <div className="bg-white rounded-lg shadow p-4 overflow-auto mb-8">
         <div className="text-center">
           <img
@@ -85,7 +82,6 @@ export default function PlanPage() {
         </div>
       </div>
 
-      {/* Directory image */}
       <div className="bg-white rounded-lg shadow p-4 overflow-auto mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">Répertoire des boutiques</h2>
         <div className="text-center">
@@ -97,7 +93,6 @@ export default function PlanPage() {
         </div>
       </div>
 
-      {/* Info */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white rounded-lg shadow p-6">
           <h3 className="font-semibold text-gray-800 mb-3">Légende des niveaux</h3>

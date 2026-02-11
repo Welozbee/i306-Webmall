@@ -70,7 +70,6 @@ export default function BoutiquesPage() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Nos Boutiques</h1>
 
-      {/* Filters */}
       <div className="bg-white rounded-lg shadow p-4 mb-6 flex flex-col md:flex-row gap-4">
         <div className="relative flex-1">
           <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -116,7 +115,6 @@ export default function BoutiquesPage() {
 
       <p className="text-sm text-gray-500 mb-4">{filtered.length} boutique{filtered.length > 1 ? "s" : ""} trouvée{filtered.length > 1 ? "s" : ""}</p>
 
-      {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {loading && Array.from({ length: 12 }).map((_, i) => <ShopCardSkeleton key={i} />)}
         {!loading && filtered.map((shop) => (

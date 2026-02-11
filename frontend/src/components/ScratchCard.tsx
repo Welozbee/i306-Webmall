@@ -8,18 +8,19 @@ interface ScratchCardProps {
 }
 
 export default function ScratchCard({ width = 300, height = 200, onComplete, result }: ScratchCardProps) {
+  // Mécanique principale du jeu: l'utilisateur "gratte" pour révéler le résultat.
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isScratching, setIsScratching] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const percentRef = useRef(0);
 
   const initCanvas = useCallback(() => {
+    // Prépare la couche à gratter (overlay) au-dessus du résultat.
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Draw gradient scratch surface
     ctx.globalCompositeOperation = "source-over";
     const gradient = ctx.createLinearGradient(0, 0, width, height);
     gradient.addColorStop(0, "#f68b1f");
@@ -28,7 +29,6 @@ export default function ScratchCard({ width = 300, height = 200, onComplete, res
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 
-    // Add pattern
     ctx.fillStyle = "rgba(255,255,255,0.15)";
     ctx.font = "14px Inter, sans-serif";
     ctx.textAlign = "center";
@@ -38,7 +38,6 @@ export default function ScratchCard({ width = 300, height = 200, onComplete, res
       }
     }
 
-    // Instruction
     ctx.fillStyle = "rgba(255,255,255,0.9)";
     ctx.font = "bold 18px Inter, sans-serif";
     ctx.textAlign = "center";
@@ -50,6 +49,7 @@ export default function ScratchCard({ width = 300, height = 200, onComplete, res
   }, [initCanvas]);
 
   const scratch = (x: number, y: number) => {
+    // Efface localement la couche de grattage et mesure la progression de révélation.
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -60,7 +60,6 @@ export default function ScratchCard({ width = 300, height = 200, onComplete, res
     ctx.arc(x, y, 20, 0, Math.PI * 2);
     ctx.fill();
 
-    // Check percentage scratched
     const imageData = ctx.getImageData(0, 0, width, height);
     let transparent = 0;
     for (let i = 3; i < imageData.data.length; i += 4) {
@@ -76,6 +75,7 @@ export default function ScratchCard({ width = 300, height = 200, onComplete, res
   };
 
   const getPos = (e: React.MouseEvent | React.TouchEvent) => {
+    // Uniformise les coordonnées souris/touch pour desktop et mobile.
     const canvas = canvasRef.current;
     if (!canvas) return { x: 0, y: 0 };
     const rect = canvas.getBoundingClientRect();
@@ -86,22 +86,26 @@ export default function ScratchCard({ width = 300, height = 200, onComplete, res
   };
 
   const handleStart = (e: React.MouseEvent | React.TouchEvent) => {
+    // Démarre une session de grattage dès le premier contact.
     setIsScratching(true);
     const { x, y } = getPos(e);
     scratch(x, y);
   };
 
   const handleMove = (e: React.MouseEvent | React.TouchEvent) => {
+    // Continue l'effacement tant que l'utilisateur maintient le contact.
     if (!isScratching) return;
     const { x, y } = getPos(e);
     scratch(x, y);
   };
 
-  const handleEnd = () => setIsScratching(false);
+  const handleEnd = () => {
+    // Termine proprement la phase de grattage.
+    setIsScratching(false);
+  };
 
   return (
     <div className="relative inline-block rounded-lg overflow-hidden shadow-lg border-2 border-fox-orange" style={{ width, height }}>
-      {/* Result underneath - only visible once revealed */}
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-white p-4">
         {revealed && result ? (
           result.won ? (
@@ -126,7 +130,6 @@ export default function ScratchCard({ width = 300, height = 200, onComplete, res
         )}
       </div>
 
-      {/* Scratch canvas on top */}
       {!revealed && (
         <canvas
           ref={canvasRef}

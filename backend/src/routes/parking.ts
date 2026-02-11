@@ -5,7 +5,6 @@ import { Role } from "../../generated/prisma/client";
 
 const router = Router();
 
-// GET /parking - List all parkings (public)
 router.get("/", async (_req: Request, res: Response) => {
   const parkings = await prisma.parking.findMany({
     orderBy: { name: "asc" },
@@ -13,7 +12,6 @@ router.get("/", async (_req: Request, res: Response) => {
   res.json(parkings);
 });
 
-// PUT /parking/:id - Update parking spaces (EMPLOYEE/ADMIN)
 router.put(
   "/:id",
   authenticate,
