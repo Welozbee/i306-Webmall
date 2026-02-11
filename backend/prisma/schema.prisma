@@ -14,36 +14,39 @@ enum Role {
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
-  passwordHash String
-  role         Role     @default(USER)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  passwordHash  String
+  role          Role           @default(USER)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   refreshTokens RefreshToken[]
+  gamePlays     GamePlay[]
 }
 
 model RefreshToken {
-  id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
-  tokenHash String   @unique
+  tokenHash String    @unique
   revokedAt DateTime?
   expiresAt DateTime
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
 }
 
-// SHOP MODEL
 model Shop {
-  id        Int      @id @default(autoincrement())
-  name      String
-  floor     Int
+  id           Int         @id @default(autoincrement())
+  name         String
+  floor        Int
+  category     String      @default("")
+  storeNumber  String      @default("")
+  phone        String      @default("")
   openingHours String
-  url       String
-  logoUrl   String
-  images    ShopImage[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  url          String
+  logoUrl      String
+  images       ShopImage[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
 }
 
 model ShopImage {
@@ -52,4 +55,41 @@ model ShopImage {
   shopId    Int
   url       String
   createdAt DateTime @default(now())
+}
+
+model GamePlay {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  won         Boolean
+  attempt     Int      @default(1) // 1 or 2 (second chance)
+  prize       String?  // Description of prize won
+  voucherCode String?  // Unique voucher code (FOX-XXXXXXXX)
+  playedAt    DateTime @default(now())
+}
+
+model Prize {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  shopName    String   // Name of the shop offering the voucher
+  quantity    Int      @default(10) // Total available
+  claimed     Int      @default(0)  // Already claimed
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Parking {
+  id             Int      @id @default(autoincrement())
+  name           String   @unique
+  totalSpaces    Int
+  availableSpaces Int
+  updatedAt      DateTime @updatedAt
+}
+
+model VisitorLog {
+  id        Int      @id @default(autoincrement())
+  visitedAt DateTime @default(now())
+  path      String   @default("/")
 }

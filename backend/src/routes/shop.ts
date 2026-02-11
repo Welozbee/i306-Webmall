@@ -31,12 +31,11 @@ router.post(
   authenticate,
   authorize(Role.EMPLOYEE, Role.ADMIN),
   async (req, res) => {
-    const { name, floor, url, logoUrl, openingHours } = req.body ?? {};
+    const { name, floor, url, logoUrl, openingHours, category, storeNumber, phone } = req.body ?? {};
 
-    if (!name || floor === undefined || !url || !logoUrl || !openingHours) {
+    if (!name || floor === undefined || !openingHours) {
       res.status(400).json({
-        error:
-          "Missing required fields: name, floor, url, logoUrl, openingHours",
+        error: "Missing required fields: name, floor, openingHours",
       });
       return;
     }
@@ -47,7 +46,16 @@ router.post(
     }
 
     const shop = await prisma.shop.create({
-      data: { name, floor, url, logoUrl, openingHours },
+      data: {
+        name,
+        floor,
+        url: url || "",
+        logoUrl: logoUrl || "",
+        openingHours,
+        category: category || "",
+        storeNumber: storeNumber || "",
+        phone: phone || "",
+      },
     });
 
     res.status(201).json(shop);
@@ -65,7 +73,7 @@ router.put(
       return;
     }
 
-    const { name, floor, url, logoUrl, openingHours } = req.body ?? {};
+    const { name, floor, url, logoUrl, openingHours, category, storeNumber, phone } = req.body ?? {};
     const data: Prisma.ShopUpdateInput = {};
 
     if (name !== undefined) data.name = name;
@@ -79,6 +87,9 @@ router.put(
     if (url !== undefined) data.url = url;
     if (logoUrl !== undefined) data.logoUrl = logoUrl;
     if (openingHours !== undefined) data.openingHours = openingHours;
+    if (category !== undefined) data.category = category;
+    if (storeNumber !== undefined) data.storeNumber = storeNumber;
+    if (phone !== undefined) data.phone = phone;
 
     if (Object.keys(data).length === 0) {
       res.status(400).json({ error: "No fields to update" });
