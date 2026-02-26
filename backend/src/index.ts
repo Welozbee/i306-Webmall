@@ -9,6 +9,7 @@ import gameRouter from "./routes/game";
 import parkingRouter from "./routes/parking";
 import visitorsRouter from "./routes/visitors";
 import usersRouter from "./routes/users";
+import prizesRouter from "./routes/prizes";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -34,6 +35,7 @@ app.use("/game", gameRouter);
 app.use("/parking", parkingRouter);
 app.use("/visitors", visitorsRouter);
 app.use("/users", usersRouter);
+app.use("/prizes", prizesRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
