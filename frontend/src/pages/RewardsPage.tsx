@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { apiFetch } from "../lib/api";
 import { Gift, Copy, Check, QrCode } from "lucide-react";
 
@@ -35,61 +35,93 @@ export default function RewardsPage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
-      <div className="flex items-center gap-3 mb-6">
-        <Gift className="text-fox-orange" size={28} />
-        <h1 className="text-3xl font-bold text-gray-800">Mes récompenses</h1>
+    <div className="bg-white min-h-screen">
+      <div className="border-b border-gray-100">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+          <div className="flex items-center gap-3">
+            <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-orange-50">
+              <Gift className="text-fox-orange" size={22} />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Mes récompenses</h1>
+              <p className="text-sm text-gray-400">{rewards.length} bon{rewards.length > 1 ? "s" : ""} gagné{rewards.length > 1 ? "s" : ""}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {rewards.length === 0 ? (
-        <div className="bg-white rounded-lg shadow p-8 text-center">
-          <p className="text-gray-500">Vous n'avez pas encore gagné de récompenses.</p>
-          <p className="text-sm text-gray-400 mt-1">Tentez votre chance au jeu quotidien sur la page d'accueil !</p>
-        </div>
-      ) : (
-        <div className="space-y-4">
-          {rewards.map((reward) => (
-            <div key={reward.id} className="bg-white rounded-lg shadow border border-gray-100 overflow-hidden">
-              <div className="p-5 flex items-center justify-between gap-4">
-                <div className="flex-1">
-                  <p className="font-semibold text-gray-800">{reward.prize}</p>
-                  <p className="text-xs text-gray-400 mt-1">
-                    Gagné le {new Date(reward.playedAt).toLocaleDateString("fr-CH")}
-                  </p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-sm bg-orange-50 text-fox-orange px-3 py-1.5 rounded border border-orange-200">
-                    {reward.voucherCode}
-                  </span>
-                  <button
-                    onClick={() => copyCode(reward.id, reward.voucherCode)}
-                    className="text-gray-400 hover:text-fox-orange transition"
-                    title="Copier le code"
-                  >
-                    {copiedId === reward.id ? <Check size={18} className="text-green-500" /> : <Copy size={18} />}
-                  </button>
-                  <button
-                    onClick={() => setQrId(qrId === reward.id ? null : reward.id)}
-                    className={`transition ${qrId === reward.id ? "text-fox-orange" : "text-gray-400 hover:text-fox-orange"}`}
-                    title="Afficher le QR code"
-                  >
-                    <QrCode size={18} />
-                  </button>
-                </div>
-              </div>
-              {qrId === reward.id && (
-                <div className="border-t border-gray-100 p-4 flex justify-center bg-gray-50">
-                  <img
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(reward.voucherCode)}`}
-                    alt={`QR ${reward.voucherCode}`}
-                    className="w-36 h-36"
-                  />
-                </div>
-              )}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6">
+        {rewards.length === 0 ? (
+          <div className="text-center py-16">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gray-50 mb-4">
+              <Gift size={28} className="text-gray-300" />
             </div>
-          ))}
-        </div>
-      )}
+            <p className="text-gray-500 font-medium">Aucune récompense pour l'instant</p>
+            <p className="text-sm text-gray-400 mt-1 mb-6">Tentez votre chance au jeu quotidien !</p>
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 bg-fox-orange text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-orange-600 transition-colors"
+            >
+              Jouer maintenant
+            </Link>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {rewards.map((reward) => (
+              <div
+                key={reward.id}
+                className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
+              >
+                <div className="p-5 flex items-center justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-gray-900 truncate">{reward.prize}</p>
+                    <p className="text-xs text-gray-400 mt-0.5">
+                      Gagné le {new Date(reward.playedAt).toLocaleDateString("fr-CH")}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="font-mono text-sm bg-orange-50 text-fox-orange px-3 py-1.5 rounded-lg border border-orange-100">
+                      {reward.voucherCode}
+                    </span>
+                    <button
+                      onClick={() => copyCode(reward.id, reward.voucherCode)}
+                      className="p-1.5 rounded-lg text-gray-400 hover:text-fox-orange hover:bg-orange-50 transition-colors"
+                      title="Copier le code"
+                    >
+                      {copiedId === reward.id ? (
+                        <Check size={16} className="text-green-500" />
+                      ) : (
+                        <Copy size={16} />
+                      )}
+                    </button>
+                    <button
+                      onClick={() => setQrId(qrId === reward.id ? null : reward.id)}
+                      className={`p-1.5 rounded-lg transition-colors ${
+                        qrId === reward.id
+                          ? "text-fox-orange bg-orange-50"
+                          : "text-gray-400 hover:text-fox-orange hover:bg-orange-50"
+                      }`}
+                      title="Afficher le QR code"
+                    >
+                      <QrCode size={16} />
+                    </button>
+                  </div>
+                </div>
+                {qrId === reward.id && (
+                  <div className="border-t border-gray-100 p-5 flex flex-col items-center gap-3 bg-gray-50">
+                    <img
+                      src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(reward.voucherCode)}`}
+                      alt={`QR ${reward.voucherCode}`}
+                      className="w-40 h-40 rounded-xl"
+                    />
+                    <p className="text-xs text-gray-400">Présentez ce code en caisse</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -39,10 +39,10 @@ export default function App() {
       <AuthProvider>
         <ToastProvider>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col bg-gray-50">
+        <div className="min-h-screen flex flex-col bg-white">
           <VisitorTracker />
           <Navbar />
-          <main className="flex-1">
+          <main className="flex-1 pb-16 md:pb-0">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/boutiques" element={<BoutiquesPage />} />
