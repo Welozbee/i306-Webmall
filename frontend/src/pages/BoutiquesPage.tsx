@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { apiFetch } from "../lib/api";
 import { Search, Phone, ExternalLink, MapPin, Heart } from "lucide-react";
 import { ShopCardSkeleton } from "../components/Skeleton";
@@ -30,6 +30,7 @@ const FLOOR_NAMES: Record<number, string> = {
 };
 
 export default function BoutiquesPage() {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [shops, setShops] = useState<Shop[]>([]);
   const [loading, setLoading] = useState(true);
@@ -131,17 +132,25 @@ export default function BoutiquesPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {loading && Array.from({ length: 12 }).map((_, i) => <ShopCardSkeleton key={i} />)}
           {!loading && filtered.map((shop) => (
-            <Link
-              to={`/boutiques/${shop.id}`}
+            <article
               key={shop.id}
-              className="group bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 block"
+              role="link"
+              tabIndex={0}
+              onClick={() => navigate(`/boutiques/${shop.id}`)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  navigate(`/boutiques/${shop.id}`);
+                }
+              }}
+              className="group bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 block cursor-pointer"
             >
               <div className="flex items-start justify-between mb-3">
                 <h3 className="font-semibold text-gray-900 text-sm flex-1 leading-snug group-hover:text-fox-orange transition-colors">
                   {shop.name}
                 </h3>
                 <button
-                  onClick={(e) => { e.preventDefault(); toggle(shop.id); }}
+                  onClick={(e) => { e.stopPropagation(); toggle(shop.id); }}
                   className="ml-2 text-gray-300 hover:text-fox-red transition shrink-0 p-0.5"
                 >
                   <Heart size={14} className={isFavorite(shop.id) ? "fill-fox-red text-fox-red" : ""} />
@@ -184,7 +193,7 @@ export default function BoutiquesPage() {
                   </a>
                 )}
               </div>
-            </Link>
+            </article>
           ))}
         </div>
 
