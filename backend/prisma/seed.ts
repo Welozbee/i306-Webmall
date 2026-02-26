@@ -1320,10 +1320,13 @@ async function main() {
   for (let i = 0; i < TOTAL_VISITORS; i += BATCH_SIZE) {
     const batch = Array.from(
       { length: Math.min(BATCH_SIZE, TOTAL_VISITORS - i) },
-      () => ({
-        visitedAt: new Date(now - Math.random() * TWELVE_MONTHS),
-        path: paths[Math.floor(Math.random() * paths.length)],
-      }),
+      () => {
+        const randomPath = paths[Math.floor(Math.random() * paths.length)];
+        return {
+          visitedAt: new Date(now - Math.random() * TWELVE_MONTHS),
+          path: randomPath ?? "/",
+        };
+      },
     );
     await prisma.visitorLog.createMany({ data: batch });
   }
