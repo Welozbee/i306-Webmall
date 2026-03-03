@@ -1058,21 +1058,21 @@ const stores = [
     storeNumber: "259",
     phone: "091 630 28 89",
     floor: 2,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "Fashion Bar",
     storeNumber: "234",
     phone: "091 646 12 43",
     floor: 2,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "Gelateria",
     storeNumber: "154",
     phone: "091 646 03 58",
     floor: 1,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "Il Caffè",
@@ -1087,13 +1087,15 @@ const stores = [
     phone: "091 914 48 58",
     floor: 1,
     category: "Food & Drinks",
+    url: "https://www.lindt.ch",
+    logoUrl: "https://www.lindt.ch/static/version1771821936/frontend/Lseu/transactional/de_CH/images/logo.png"
   },
   {
     name: "Pizzeria",
     storeNumber: "137",
     phone: "091 630 27 81",
     floor: 1,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "Maui Poke",
@@ -1101,34 +1103,36 @@ const stores = [
     phone: "091 222 99 01",
     floor: 1,
     category: "Food & Drinks",
+    url: "https://mauipoke.ch/",
+    logoUrl: "https://mauipoke.ch/wp-content/uploads/2022/02/maui_logo_w.svg"
   },
   {
     name: "The Place Asian",
     storeNumber: "121",
     phone: "091 646 03 58",
     floor: 1,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "The Place Juices",
     storeNumber: "154",
     phone: "091 646 03 58",
     floor: 1,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "The Place Sweet & Salt",
     storeNumber: "121",
     phone: "091 646 03 58",
     floor: 1,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "Wood Avenue - Italian Restaurant",
     storeNumber: "170",
     phone: "091 646 03 56",
     floor: 1,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
 
   // SERVICES
