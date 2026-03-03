@@ -1070,6 +1070,8 @@ const stores = [
     phone: "091 630 23 45",
     floor: 1,
     category: "Underwear",
+    url: "https://www.calida.com",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2014.10.28.10.22.328052.jpg"
   },
   {
     name: "Calzedonia - Intimissimi",
@@ -1077,6 +1079,8 @@ const stores = [
     phone: "091 646 74 41",
     floor: 1,
     category: "Underwear",
+    url: "https://www.intimissimi.com",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2014.10.28.10.23.046991.jpg"
   },
   {
     name: "Hanro",
@@ -1084,6 +1088,8 @@ const stores = [
     phone: "091 630 09 94",
     floor: 2,
     category: "Underwear",
+    url: "https://hanro.com/",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2019.05.02.02.51.455876.jpg"
   },
   {
     name: "Triumph",
@@ -1091,6 +1097,8 @@ const stores = [
     phone: "091 646 37 02",
     floor: 1,
     category: "Underwear",
+    url: "https://ch.triumph.com/",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2023-08-16-12-30-5270552.jpg"
   },
   {
     name: "Wolford",
@@ -1098,6 +1106,8 @@ const stores = [
     phone: "091 630 10 27",
     floor: 3,
     category: "Underwear",
+    url: "https://www.wolford.com",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2023-01-30-09-23-2173690.jpg"
   },
 
   // FOOD & DRINKS
