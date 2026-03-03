@@ -962,13 +962,16 @@ const stores = [
     phone: "091 646 45 05",
     floor: 2,
     category: "Home",
+    url: "https://www.bassetti.com/",
+    logoUrl: "https://www.bassetti.com/assets/logo-1-2d907dae.png"
+
   },
   {
-    name: "Christmas Store",
+    name: "Christmas Store", // It was a temporary store for the 2025 Christmas season, from what I found
     storeNumber: "350",
     phone: "091 646 77 12",
     floor: 3,
-    category: "Home",
+    category: "Home"
   },
   {
     name: "Le Creuset",
@@ -976,13 +979,15 @@ const stores = [
     phone: "091 646 83 37",
     floor: 0,
     category: "Home",
+    url: "https://www.lecreuset.ch/",
+    logoUrl: "https://www.lecreuset.ch/on/demandware.static/Sites-LCCH-Site/-/default/dwcbd62265/images/logo.svg"
   },
   {
     name: "Millefiori store",
     storeNumber: "152",
     phone: "091 646 77 12",
     floor: 1,
-    category: "Home",
+    category: "Home"
   },
   {
     name: "Villeroy & Boch",
@@ -990,6 +995,9 @@ const stores = [
     phone: "091 630 26 20",
     floor: 2,
     category: "Home",
+    url: "https://pwasf.villeroy-boch.ch/",
+    logoUrl: "https://pwasf.villeroy-boch.ch/mobify/bundle/659/static/img/global/apple-touch-icon.png"
+
   },
   {
     name: "Wmf",
@@ -997,6 +1005,9 @@ const stores = [
     phone: "091 646 21 25",
     floor: 2,
     category: "Home",
+    url: "https://www.wmf.com/ch/de/",
+    logoUrl: "https://www.wmf.com/static/version1772117106/frontend/wmf/hyva/de_CH/images/logo.svg"
+
   },
 
   // CHILDRENSWEAR
