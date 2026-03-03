@@ -1284,6 +1284,8 @@ const stores = [
     phone: "091 646 73 45",
     floor: 0,
     category: "Temporary Stores",
+    url: "https://www.bally.com/",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2023-03-22-11-26-5714473.jpg"
   },
   {
     name: "Boxeur Des Rues Temporary",
@@ -1291,6 +1293,8 @@ const stores = [
     phone: "091 646 01 01",
     floor: 3,
     category: "Temporary Stores",
+    url: "https://www.boxeurdesrues.com/",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2018.11.09.10.01.044774.jpg"
   },
   {
     name: "Odlo Temporary",
@@ -1298,6 +1302,8 @@ const stores = [
     phone: "041 545 36 79",
     floor: 2,
     category: "Temporary Stores",
+    url: "https://www.odlo.com",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2022-10-27-14-47-3813877.jpg"
   },
   {
     name: "Timberland Temporary",
@@ -1305,6 +1311,8 @@ const stores = [
     phone: "091 630 23 55",
     floor: 2,
     category: "Temporary Stores",
+    url: "https://www.timberland.com",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2014.10.28.10.23.408778.jpg"
   },
 ];
 
