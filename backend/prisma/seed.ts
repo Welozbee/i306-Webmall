@@ -1146,7 +1146,7 @@ const stores = [
     floor: 1,
     category: "Food & Drinks",
     url: "https://www.lindt.ch",
-    logoUrl: "https://www.lindt.ch/static/version1771821936/frontend/Lseu/transactional/de_CH/images/logo.png"
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2014.10.28.10.23.176447.jpg"
   },
   {
     name: "Pizzeria",
