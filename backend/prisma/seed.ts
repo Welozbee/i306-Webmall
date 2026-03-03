@@ -1017,6 +1017,7 @@ const stores = [
     phone: "",
     floor: 1,
     category: "Childrenswear",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2014.10.28.10.22.323142.jpg"
   },
   {
     name: "Harmont & Blaine Junior",
@@ -1024,6 +1025,8 @@ const stores = [
     phone: "091 646 66 34",
     floor: 1,
     category: "Childrenswear",
+    url: "https://www.harmontblaine.com",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2023-09-15-09-44-3174107.jpg"
   },
   {
     name: "Jacadi Paris",
@@ -1031,6 +1034,8 @@ const stores = [
     phone: "091 646 38 88",
     floor: 3,
     category: "Childrenswear",
+    url: "https://www.jacadi.fr/",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2023-03-16-08-45-0770848.jpg"
   },
   {
     name: "Kid Space",
@@ -1038,6 +1043,7 @@ const stores = [
     phone: "091 646 80 62",
     floor: 2,
     category: "Childrenswear",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2014.10.28.10.23.067204.jpg"
   },
   {
     name: "Kid Space Collection",
@@ -1045,6 +1051,7 @@ const stores = [
     phone: "091 646 20 62",
     floor: 1,
     category: "Childrenswear",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2025-11-11-12-48-5346315.jpg"
   },
   {
     name: "Simonetta",
@@ -1052,6 +1059,8 @@ const stores = [
     phone: "091 646 38 13",
     floor: 3,
     category: "Childrenswear",
+    url: "https://www.simonetta.it/",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2024-06-25-09-54-0382652.jpg"
   },
 
   // UNDERWEAR
