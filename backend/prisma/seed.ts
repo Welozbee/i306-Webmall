@@ -1170,27 +1170,29 @@ const stores = [
     phone: "091 640 50 20",
     floor: 1,
     category: "Services",
+    url: "https://mendrisio.admiral.ch/",
+    logoUrl: "https://mendrisio.admiral.ch/wp-content/uploads/2021/12/LOGO-MENDRISIO-900-300x169.png"
   },
   {
     name: "Cloakroom",
     storeNumber: "019",
     phone: "091 646 78 83",
     floor: 0,
-    category: "Services",
+    category: "Services"
   },
   {
     name: "Infopoint",
     storeNumber: "",
     phone: "0848 828 888",
     floor: 1,
-    category: "Services",
+    category: "Services"
   },
   {
     name: "Guest Services",
     storeNumber: "",
     phone: "091 630 08 03",
     floor: 1,
-    category: "Services",
+    category: "Services"
   },
   {
     name: "Planet Tax Refund Point",
@@ -1198,6 +1200,8 @@ const stores = [
     phone: "091 630 00 61",
     floor: 1,
     category: "Services",
+    url: "https://www.planetpayment.com/refund-locations?country=ch", 
+    logoUrl: "https://www.planetpayment.com/resources/logo/planet_logo.svg"
   },
   {
     name: "Global Blue Tax Free Refund Point",
@@ -1205,13 +1209,15 @@ const stores = [
     phone: "091 630 00 61",
     floor: 1,
     category: "Services",
+    url: "https://www.globalblue.com/en",
+    logoUrl: "https://www.globalblue.com/assets/svg/logo.svg"
   },
   {
     name: "Tailor's Store",
     storeNumber: "019",
     phone: "091 646 78 83",
     floor: 0,
-    category: "Services",
+    category: "Services"
   },
   {
     name: "The Sense Gallery",
@@ -1219,6 +1225,8 @@ const stores = [
     phone: "091 610 99 63",
     floor: 1,
     category: "Services",
+    url: "https://www.thesensegallery.com/en/homepage",
+    logoUrl: "https://www.thesensegallery.com/upload/multimedia/2024/04/logo-the-sense-gallery.svg"
   },
   {
     name: "Tichange - Exchange Office",
@@ -1226,6 +1234,8 @@ const stores = [
     phone: "091 630 00 61",
     floor: 1,
     category: "Services",
+    url: "https://tichangegroup.ch/portfolio/startup-funding/", 
+    logoUrl: "https://tichangegroup.ch/wp-content/uploads/2018/04/logotichangegroup-1-e1523453451277.png"
   },
   {
     name: "Vantaviaggi",
@@ -1233,6 +1243,8 @@ const stores = [
     phone: "091 646 42 85",
     floor: 1,
     category: "Services",
+    url: "https://www.vantaviaggi.com/",
+    logoUrl: "https://www.vantaviaggi.com/imgcache/306_99b7ecc9462/1179_600_266_2945a9475b.png"
   },
 
   // TEMPORARY STORES
