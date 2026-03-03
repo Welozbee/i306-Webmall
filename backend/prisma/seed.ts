@@ -1,6 +1,7 @@
 import prisma from "../src/prisma";
 import bcrypt from "bcryptjs";
 import { Role } from "../generated/prisma/client";
+import { url } from "node:inspector";
 
 const stores = [
   // HIGH FASHION
@@ -197,6 +198,9 @@ const stores = [
     phone: "091 646 35 12",
     floor: 3,
     category: "Ladies & Menswear",
+    logoUrl:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmma.prnewswire.com%2Fmedia%2F1274087%2F7_for_all_Mankind_Logo.jpg%3Fp%3Dfacebook&f=1&nofb=1&ipt=db4e7f20e2232914eed05f0792ac3b25c7cbe5f2267875cbf6b2c8bdfff3043d",
+    url: "https://www.7forallmankind.fr/fr_fr/",
   },
   {
     name: "André Maurice",
@@ -204,6 +208,9 @@ const stores = [
     phone: "091 630 29 29",
     floor: 3,
     category: "Ladies & Menswear",
+    logoUrl:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.licdn.com%2Fdms%2Fimage%2Fv2%2FD4D0BAQFUl0ZNkNdwew%2Fcompany-logo_200_200%2Fcompany-logo_200_200%2F0%2F1689606764060%2Fandr_maurice_logo%3Fe%3D2147483647%26v%3Dbeta%26t%3D_xawgAeB9Okw5gShYJu_hkh7owvRc5G-AMzySMRphQA&f=1&nofb=1&ipt=5ac07491d6348eafef96df8b812d0d00cf422ba08e048d32b2807ed3a4ec60d0",
+    url: "https://www.andremaurice.com/",
   },
   {
     name: "Angelico",
@@ -211,6 +218,9 @@ const stores = [
     phone: "091 224 65 57",
     floor: 2,
     category: "Ladies & Menswear",
+    url: "https://angelico.it/en",
+    logoUrl:
+      "https://angelico.it/cdn/shop/files/logo-angelico-dal1959-bianco.png?v=1716988942&width=320",
   },
   {
     name: "Boggi Milano",
@@ -218,6 +228,9 @@ const stores = [
     phone: "091 646 78 33",
     floor: 1,
     category: "Ladies & Menswear",
+    url: "https://www.boggi.com/fr_FR/default-homepage",
+    logoUrl:
+      "https://www.boggi.com/on/demandware.static/Sites-Boggi-Site/-/default/dwf7dd6555/images/global/boggi-logo-alt.svg",
   },
   {
     name: "Brooks Brothers",
@@ -225,6 +238,9 @@ const stores = [
     phone: "091 646 62 52",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://www.brooksbrothers.eu/fr-fr/",
+    logoUrl:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogos-world.net%2Fwp-content%2Fuploads%2F2020%2F08%2FBrooks-Brothers-Logo.png&f=1&nofb=1&ipt=cf822ce1d5c0b4e0b1fdeca688fbf2d661d0408718f670f5b6a6dc4c81df8072",
   },
   {
     name: "Camicissima",
@@ -232,6 +248,9 @@ const stores = [
     phone: "091 646 27 27",
     floor: 1,
     category: "Ladies & Menswear",
+    url: "https://www.camicissima.it/",
+    logoUrl:
+      "https://www.camicissima.it/media/logo/stores/1/LOGO-CamicissimaMilanoSince1931-Black.jpg",
   },
   {
     name: "Caroll",
@@ -239,13 +258,19 @@ const stores = [
     phone: "091 922 81 72",
     floor: 2,
     category: "Ladies & Menswear",
+    url: "https://www.caroll.com/fr_fr/",
+    logoUrl:
+      "https://www.caroll.com/on/demandware.static/Sites-CRL_FR_SFRA-Site/-/default/dw969ff8b1/images/logo.svg",
   },
   {
-    name: "Costume National",
+    name: "CoSTUME National",
     storeNumber: "217",
     phone: "091 646 80 62",
     floor: 2,
     category: "Ladies & Menswear",
+    url: "https://costumenational.com/",
+    logoUrl:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fseeklogo.com%2Fimages%2FC%2Fcostume-national-logo-3616B94F87-seeklogo.com.png%3Fv%3D637703372230000000&f=1&nofb=1&ipt=b00d326e03bf1829913624e656163d5690edc5ec668490efe8b65fe3992bae33",
   },
   {
     name: "Elena Mirò",
@@ -253,6 +278,9 @@ const stores = [
     phone: "091 646 38 66",
     floor: 2,
     category: "Ladies & Menswear",
+    url: "https://www.elenamiro.com/fr_FR",
+    logoUrl:
+      "https://www.elenamiro.com/on/demandware.static/Sites-elenamiro_global-Site/-/default/dwe0bd6fa6/images/logo_miro_monogram.gif",
   },
   {
     name: "Elmas Phil",
