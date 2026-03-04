@@ -1114,13 +1114,16 @@ const stores = [
     phone: "091 646 45 05",
     floor: 2,
     category: "Home",
+    url: "https://www.bassetti.com/",
+    logoUrl: "https://www.bassetti.com/assets/logo-1-2d907dae.png"
+
   },
   {
-    name: "Christmas Store",
+    name: "Christmas Store", // It was a temporary store for the 2025 Christmas season, from what I found
     storeNumber: "350",
     phone: "091 646 77 12",
     floor: 3,
-    category: "Home",
+    category: "Home"
   },
   {
     name: "Le Creuset",
@@ -1128,13 +1131,15 @@ const stores = [
     phone: "091 646 83 37",
     floor: 0,
     category: "Home",
+    url: "https://www.lecreuset.ch/",
+    logoUrl: "https://www.lecreuset.ch/on/demandware.static/Sites-LCCH-Site/-/default/dwcbd62265/images/logo.svg"
   },
   {
     name: "Millefiori store",
     storeNumber: "152",
     phone: "091 646 77 12",
     floor: 1,
-    category: "Home",
+    category: "Home"
   },
   {
     name: "Villeroy & Boch",
@@ -1142,6 +1147,9 @@ const stores = [
     phone: "091 630 26 20",
     floor: 2,
     category: "Home",
+    url: "https://pwasf.villeroy-boch.ch/",
+    logoUrl: "https://pwasf.villeroy-boch.ch/mobify/bundle/659/static/img/global/apple-touch-icon.png"
+
   },
   {
     name: "Wmf",
@@ -1149,6 +1157,9 @@ const stores = [
     phone: "091 646 21 25",
     floor: 2,
     category: "Home",
+    url: "https://www.wmf.com/ch/de/",
+    logoUrl: "https://www.wmf.com/static/version1772117106/frontend/wmf/hyva/de_CH/images/logo.svg"
+
   },
 
   // CHILDRENSWEAR
@@ -1158,6 +1169,7 @@ const stores = [
     phone: "",
     floor: 1,
     category: "Childrenswear",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2014.10.28.10.22.323142.jpg"
   },
   {
     name: "Harmont & Blaine Junior",
@@ -1165,6 +1177,8 @@ const stores = [
     phone: "091 646 66 34",
     floor: 1,
     category: "Childrenswear",
+    url: "https://www.harmontblaine.com",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2023-09-15-09-44-3174107.jpg"
   },
   {
     name: "Jacadi Paris",
@@ -1172,6 +1186,8 @@ const stores = [
     phone: "091 646 38 88",
     floor: 3,
     category: "Childrenswear",
+    url: "https://www.jacadi.fr/",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2023-03-16-08-45-0770848.jpg"
   },
   {
     name: "Kid Space",
@@ -1179,6 +1195,7 @@ const stores = [
     phone: "091 646 80 62",
     floor: 2,
     category: "Childrenswear",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2014.10.28.10.23.067204.jpg"
   },
   {
     name: "Kid Space Collection",
@@ -1186,6 +1203,7 @@ const stores = [
     phone: "091 646 20 62",
     floor: 1,
     category: "Childrenswear",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2025-11-11-12-48-5346315.jpg"
   },
   {
     name: "Simonetta",
@@ -1193,6 +1211,8 @@ const stores = [
     phone: "091 646 38 13",
     floor: 3,
     category: "Childrenswear",
+    url: "https://www.simonetta.it/",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2024-06-25-09-54-0382652.jpg"
   },
 
   // UNDERWEAR
@@ -1202,6 +1222,8 @@ const stores = [
     phone: "091 630 23 45",
     floor: 1,
     category: "Underwear",
+    url: "https://www.calida.com",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2014.10.28.10.22.328052.jpg"
   },
   {
     name: "Calzedonia - Intimissimi",
@@ -1209,6 +1231,8 @@ const stores = [
     phone: "091 646 74 41",
     floor: 1,
     category: "Underwear",
+    url: "https://www.intimissimi.com",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2014.10.28.10.23.046991.jpg"
   },
   {
     name: "Hanro",
@@ -1216,6 +1240,8 @@ const stores = [
     phone: "091 630 09 94",
     floor: 2,
     category: "Underwear",
+    url: "https://hanro.com/",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2019.05.02.02.51.455876.jpg"
   },
   {
     name: "Triumph",
@@ -1223,6 +1249,8 @@ const stores = [
     phone: "091 646 37 02",
     floor: 1,
     category: "Underwear",
+    url: "https://ch.triumph.com/",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2023-08-16-12-30-5270552.jpg"
   },
   {
     name: "Wolford",
@@ -1230,6 +1258,8 @@ const stores = [
     phone: "091 630 10 27",
     floor: 3,
     category: "Underwear",
+    url: "https://www.wolford.com",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2023-01-30-09-23-2173690.jpg"
   },
 
   // FOOD & DRINKS
@@ -1238,21 +1268,21 @@ const stores = [
     storeNumber: "259",
     phone: "091 630 28 89",
     floor: 2,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "Fashion Bar",
     storeNumber: "234",
     phone: "091 646 12 43",
     floor: 2,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "Gelateria",
     storeNumber: "154",
     phone: "091 646 03 58",
     floor: 1,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "Il Caffè",
@@ -1267,13 +1297,15 @@ const stores = [
     phone: "091 914 48 58",
     floor: 1,
     category: "Food & Drinks",
+    url: "https://www.lindt.ch",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2014.10.28.10.23.176447.jpg"
   },
   {
     name: "Pizzeria",
     storeNumber: "137",
     phone: "091 630 27 81",
     floor: 1,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "Maui Poke",
@@ -1281,34 +1313,36 @@ const stores = [
     phone: "091 222 99 01",
     floor: 1,
     category: "Food & Drinks",
+    url: "https://mauipoke.ch/",
+    logoUrl: "https://mauipoke.ch/wp-content/uploads/2022/02/maui_logo_w.svg"
   },
   {
     name: "The Place Asian",
     storeNumber: "121",
     phone: "091 646 03 58",
     floor: 1,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "The Place Juices",
     storeNumber: "154",
     phone: "091 646 03 58",
     floor: 1,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "The Place Sweet & Salt",
     storeNumber: "121",
     phone: "091 646 03 58",
     floor: 1,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
   {
     name: "Wood Avenue - Italian Restaurant",
     storeNumber: "170",
     phone: "091 646 03 56",
     floor: 1,
-    category: "Food & Drinks",
+    category: "Food & Drinks"
   },
 
   // SERVICES
@@ -1318,27 +1352,29 @@ const stores = [
     phone: "091 640 50 20",
     floor: 1,
     category: "Services",
+    url: "https://mendrisio.admiral.ch/",
+    logoUrl: "https://mendrisio.admiral.ch/wp-content/uploads/2021/12/LOGO-MENDRISIO-900-300x169.png"
   },
   {
     name: "Cloakroom",
     storeNumber: "019",
     phone: "091 646 78 83",
     floor: 0,
-    category: "Services",
+    category: "Services"
   },
   {
     name: "Infopoint",
     storeNumber: "",
     phone: "0848 828 888",
     floor: 1,
-    category: "Services",
+    category: "Services"
   },
   {
     name: "Guest Services",
     storeNumber: "",
     phone: "091 630 08 03",
     floor: 1,
-    category: "Services",
+    category: "Services"
   },
   {
     name: "Planet Tax Refund Point",
@@ -1346,6 +1382,8 @@ const stores = [
     phone: "091 630 00 61",
     floor: 1,
     category: "Services",
+    url: "https://www.planetpayment.com/refund-locations?country=ch", 
+    logoUrl: "https://www.planetpayment.com/resources/logo/planet_logo.svg"
   },
   {
     name: "Global Blue Tax Free Refund Point",
@@ -1353,13 +1391,15 @@ const stores = [
     phone: "091 630 00 61",
     floor: 1,
     category: "Services",
+    url: "https://www.globalblue.com/en",
+    logoUrl: "https://www.globalblue.com/assets/svg/logo.svg"
   },
   {
     name: "Tailor's Store",
     storeNumber: "019",
     phone: "091 646 78 83",
     floor: 0,
-    category: "Services",
+    category: "Services"
   },
   {
     name: "The Sense Gallery",
@@ -1367,6 +1407,8 @@ const stores = [
     phone: "091 610 99 63",
     floor: 1,
     category: "Services",
+    url: "https://www.thesensegallery.com/en/homepage",
+    logoUrl: "https://www.thesensegallery.com/upload/multimedia/2024/04/logo-the-sense-gallery.svg"
   },
   {
     name: "Tichange - Exchange Office",
@@ -1374,6 +1416,8 @@ const stores = [
     phone: "091 630 00 61",
     floor: 1,
     category: "Services",
+    url: "https://tichangegroup.ch/portfolio/startup-funding/", 
+    logoUrl: "https://tichangegroup.ch/wp-content/uploads/2018/04/logotichangegroup-1-e1523453451277.png"
   },
   {
     name: "Vantaviaggi",
@@ -1381,6 +1425,8 @@ const stores = [
     phone: "091 646 42 85",
     floor: 1,
     category: "Services",
+    url: "https://www.vantaviaggi.com/",
+    logoUrl: "https://www.vantaviaggi.com/imgcache/306_99b7ecc9462/1179_600_266_2945a9475b.png"
   },
 
   // TEMPORARY STORES
@@ -1390,6 +1436,8 @@ const stores = [
     phone: "091 646 73 45",
     floor: 0,
     category: "Temporary Stores",
+    url: "https://www.bally.com/",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2023-03-22-11-26-5714473.jpg"
   },
   {
     name: "Boxeur Des Rues Temporary",
@@ -1397,6 +1445,8 @@ const stores = [
     phone: "091 646 01 01",
     floor: 3,
     category: "Temporary Stores",
+    url: "https://www.boxeurdesrues.com/",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2018.11.09.10.01.044774.jpg"
   },
   {
     name: "Odlo Temporary",
@@ -1404,6 +1454,8 @@ const stores = [
     phone: "041 545 36 79",
     floor: 2,
     category: "Temporary Stores",
+    url: "https://www.odlo.com",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2022-10-27-14-47-3813877.jpg"
   },
   {
     name: "Timberland Temporary",
@@ -1411,6 +1463,8 @@ const stores = [
     phone: "091 630 23 55",
     floor: 2,
     category: "Temporary Stores",
+    url: "https://www.timberland.com",
+    logoUrl: "https://www.foxtown.com/upload/multimedia/2014.10.28.10.23.408778.jpg"
   },
 ];
 
