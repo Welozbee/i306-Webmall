@@ -21,6 +21,8 @@ const stores = [
     phone: "091 630 06 17",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.armani.com/",
+    logoUrl: "https://logo.com/image-cdn/images/kts928pd/production/91b306f0fe09a3f6b80edbaa4f1179d510534f7e-1104x632.png?w=1920&q=72&fm=webp",
   },
   {
     name: "Borbonese",
@@ -28,6 +30,8 @@ const stores = [
     phone: "091 646 26 60",
     floor: 2,
     category: "High Fashion",
+    url: "https://www.borbonese.com/",
+    logoUrl: "https://www.borbonese.com/cdn/shop/files/borbonese-logo_800x.png?v=1684847804",
   },
   {
     name: "Boss",
@@ -35,6 +39,8 @@ const stores = [
     phone: "091 630 26 40",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.hugoboss.com/",
+    logoUrl: "https://brandpulse.ch/wp-content/uploads/2021/08/Work_Case_HB.jpg",
   },
   {
     name: "Burberry",
@@ -42,6 +48,8 @@ const stores = [
     phone: "044 588 99 62",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.burberry.com/",
+    logoUrl: "https://static.vecteezy.com/system/resources/thumbnails/014/414/693/small/burberry-old-logo-on-transparent-background-free-vector.jpg",
   },
   {
     name: "Coach",
@@ -49,6 +57,8 @@ const stores = [
     phone: "091 646 01 86",
     floor: 2,
     category: "High Fashion",
+    url: "https://www.coach.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPDSukeGHpl4-5mvFqPHG9gqoNL-VVk9TQNw&s",
   },
   {
     name: "Corneliani",
@@ -56,6 +66,8 @@ const stores = [
     phone: "091 630 01 47",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.corneliani.com/",
+    logoUrl: "https://srs.nl/wp-content/uploads/2017/09/Corneliani-logo.jpg",
   },
   {
     name: "Dolce & Gabbana",
@@ -63,6 +75,8 @@ const stores = [
     phone: "091 630 29 90",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.dolcegabbana.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0M2gkNxGLekBlaOP6Qoxz00DlCrOvfSKm1A&s",
   },
   {
     name: "Dsquared2",
@@ -70,6 +84,8 @@ const stores = [
     phone: "091 646 35 36",
     floor: 1,
     category: "High Fashion",
+    url: "https://www.dsquared2.com/",
+    logoUrl: "https://1000logos.net/wp-content/uploads/2022/07/Dsquared2-logo.jpg",
   },
   {
     name: "Etro",
@@ -77,6 +93,8 @@ const stores = [
     phone: "091 646 34 15",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.etro.com/",
+    logoUrl: "https://www.soulery.com/img/m/127.jpg",
   },
   {
     name: "Fay",
@@ -84,6 +102,8 @@ const stores = [
     phone: "091 646 92 15",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.fay.com/",
+    logoUrl: "https://www.fay.com/static/assets/images/favicon/favicon-196x196.png",
   },
   {
     name: "Furla",
@@ -91,6 +111,8 @@ const stores = [
     phone: "091 646 36 01",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.furla.com/",
+    logoUrl: "https://www.journalduluxe.fr/files/resize/outside/875-875-furla-logo_118bace5eed472b9dd55c91c57da7264.jpeg",
   },
   {
     name: "John Richmond",
@@ -98,6 +120,8 @@ const stores = [
     phone: "091 630 29 33",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.johnrichmond.com/",
+    logoUrl: "https://thumbs.dreamstime.com/b/vector-logos-collection-most-famous-fashion-brands-world-format-available-illustrator-ai-john-richmond-logo-132135838.jpg",
   },
   {
     name: "Kate Spade New York",
@@ -105,6 +129,8 @@ const stores = [
     phone: "091 646 77 67",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.katespade.com/",
+    logoUrl: "https://media.designrush.com/inspiration_images/136117/conversions/_1513770727_402_kate_spade1_365b00401e4f-preview.jpg",
   },
   {
     name: "Kiton",
@@ -112,6 +138,8 @@ const stores = [
     phone: "091 683 02 02",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.kiton.it/",
+    logoUrl: "https://thumbs.dreamstime.com/b/logo-de-kiton-120007071.jpg",
   },
   {
     name: "Longchamp",
@@ -119,6 +147,8 @@ const stores = [
     phone: "091 600 35 30",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.longchamp.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOtSV3XAeSRiALPKzyYWDyuhlnVO6DYUUmMQ&s",
   },
   {
     name: "Loro Piana",
@@ -126,6 +156,8 @@ const stores = [
     phone: "091 640 99 30",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.loropiana.com/",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Loro_Piana_logo.png",
   },
   {
     name: "Michael Kors",
@@ -133,6 +165,8 @@ const stores = [
     phone: "091 646 81 00",
     floor: 2,
     category: "High Fashion",
+    url: "https://www.michaelkors.com/",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/3/32/Michael_Kors_%28brand%29_logo.svg/960px-Michael_Kors_%28brand%29_logo.svg.png",
   },
   {
     name: "Missoni",
@@ -140,6 +174,8 @@ const stores = [
     phone: "091 646 74 19",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.missoni.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy_YGJjB78ni5LhHYFbBuqsJTXh7xx3q6c1A&s",
   },
   {
     name: "Off-White",
@@ -147,6 +183,8 @@ const stores = [
     phone: "091 646 33 90",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.off---white.com/",
+    logoUrl: "https://1000logos.net/wp-content/uploads/2019/06/Off-White-Logo.jpg",
   },
   {
     name: "Patrizia Pepe",
@@ -154,6 +192,8 @@ const stores = [
     phone: "091 640 08 11",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.patriziapepe.com/",
+    logoUrl: "https://pringo.it/wp-content/uploads/2024/12/Patrizia-Pepe-logo-1000x500-1.jpg",
   },
   {
     name: "Philipp Plein Men",
@@ -161,6 +201,8 @@ const stores = [
     phone: "091 646 24 08",
     floor: 1,
     category: "High Fashion",
+    url: "https://www.pleinoutlet.com/",
+    logoUrl: "https://thumbs.dreamstime.com/b/philipp-plein-logo-120566665.jpg",
   },
   {
     name: "Philipp Plein Women",
@@ -168,6 +210,8 @@ const stores = [
     phone: "091 646 24 08",
     floor: 1,
     category: "High Fashion",
+    url: "https://www.pleinoutlet.com/",
+    logoUrl: "https://thumbs.dreamstime.com/b/philipp-plein-logo-120566665.jpg",
   },
   {
     name: "Prada",
@@ -175,6 +219,8 @@ const stores = [
     phone: "091 986 64 40",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.prada.com/",
+    logoUrl: "https://1000logos.net/wp-content/uploads/2017/05/Prada-Logo.png",
   },
   {
     name: "Salvatore Ferragamo",
@@ -182,6 +228,8 @@ const stores = [
     phone: "091 630 05 90",
     floor: 1,
     category: "High Fashion",
+    url: "https://www.ferragamo.com/",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Salvatore_Ferragamo_logo.png",
   },
   {
     name: "Versace",
@@ -189,6 +237,8 @@ const stores = [
     phone: "091 646 74 74",
     floor: 3,
     category: "High Fashion",
+    url: "https://www.versace.com/",
+    logoUrl: "https://images.seeklogo.com/logo-png/14/1/versace-medusa-logo-png_seeklogo-148376.png",
   },
 
   // LADIES & MENSWEAR
@@ -288,6 +338,8 @@ const stores = [
     phone: "091 220 84 53",
     floor: 2,
     category: "Ladies & Menswear",
+    url: "https://elmasphil.it/",
+    logoUrl: "https://elmasphil.it/wp-content/uploads/2024/04/Elmas-Phil.png",
   },
   {
     name: "Elmas Phil Collection",
@@ -295,6 +347,8 @@ const stores = [
     phone: "091 220 84 53",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://elmasphil.it/",
+    logoUrl: "https://elmasphil.it/wp-content/uploads/2024/04/Elmas-Phil.png",
   },
   {
     name: "Elmas Phil Uomo",
@@ -302,6 +356,8 @@ const stores = [
     phone: "091 220 84 53",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://elmasphil.it/collezioni/collezioni-lui/",
+    logoUrl: "https://elmasphil.it/wp-content/uploads/2024/04/Elmas-Phil.png",
   },
   {
     name: "Falke",
@@ -309,6 +365,8 @@ const stores = [
     phone: "091 646 83 88",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://www.falke.com/",
+    logoUrl: "https://www.falke.com/ch_fr/fecd7566c6d9c31f6598ced3a7a9fcb05246002e/assets/base/staticImages/falke_germany_1895_logo.svg",
   },
   {
     name: "Fiorella Rubino",
@@ -316,6 +374,8 @@ const stores = [
     phone: "091 224 48 62",
     floor: 2,
     category: "Ladies & Menswear",
+    url: "https://www.fiorellarubino.it/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa1i1ZXSer0pIqbbanbC1m2_J69jguO16DOA&s",
   },
   {
     name: "Flavio Castellani",
@@ -323,6 +383,8 @@ const stores = [
     phone: "091 646 48 48",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://flaviocastellani.it/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPPQtCpbpzZoy1OWyTiapyYdm9EzdPMhnu-A&s",
   },
   {
     name: "Hackett London",
@@ -330,6 +392,8 @@ const stores = [
     phone: "091 630 03 29",
     floor: 2,
     category: "Ladies & Menswear",
+    url: "https://www.hackett.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQerrhzDuToKoENJuyEWKpJTs8ubXI1e3RDJQ&s",
   },
   {
     name: "Human Couture",
@@ -337,6 +401,8 @@ const stores = [
     phone: "091 646 36 53",
     floor: 2,
     category: "Ladies & Menswear",
+    url: "https://human-couture.com/en/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStW-KFRBRGNnV2R9azPzgRWPbI8pliRV7Lww&s",
   },
   {
     name: "Il Lanificio",
@@ -344,6 +410,8 @@ const stores = [
     phone: "091 630 23 10",
     floor: 2,
     category: "Ladies & Menswear",
+    url: "https://www.illanificio.com/fr",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKYHr-23PgZGDl6a5G9DC8tzgrZbf2YGc5A&s",
   },
   {
     name: "Jerem",
@@ -351,6 +419,8 @@ const stores = [
     phone: "091 646 01 10",
     floor: 1,
     category: "Ladies & Menswear",
+    url: "https://www.jerem.com/fr/",
+    logoUrl: "https://www.jerem.com/img/jeremcom-logo-1650012659.jpg",
   },
   {
     name: "Maje",
@@ -358,6 +428,8 @@ const stores = [
     phone: "091 630 01 46",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://www.maje.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfd38XQah3gh8ySOahzpmvB4fKBCbsADyDqA&s",
   },
   {
     name: "Marc O'Polo",
@@ -365,6 +437,8 @@ const stores = [
     phone: "091 252 00 01",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://www.marcopolocom/",
+    logoUrl: "https://www.a6-fashionplace.de/wp-content/uploads/2023/10/A6_fashion-place_store_Marc_Opolo_quadrat.png",
   },
   {
     name: "Modesto Bertotto",
@@ -372,6 +446,8 @@ const stores = [
     phone: "091 646 06 25",
     floor: 2,
     category: "Ladies & Menswear",
+    url: "https://www.modestobertotto.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn_dkvgteeu6qnRJiDkNl4Mfhs9y3G_SEcdA&s",
   },
   {
     name: "Moorer",
@@ -379,6 +455,8 @@ const stores = [
     phone: "091 640 95 56",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://www.moorer.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZCJ-SV9dDG_vJ7gDvXAtb5jjpuWwpxZoAig&s",
   },
   {
     name: "Morgan",
@@ -386,6 +464,8 @@ const stores = [
     phone: "091 646 77 52",
     floor: 2,
     category: "Ladies & Menswear",
+    url: "https://www.morgan.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4hNpqz4SLc3B62fVuMTIJFybaNrh8YUITiQ&s",
   },
   {
     name: "Motivi",
@@ -393,6 +473,8 @@ const stores = [
     phone: "091 630 28 45",
     floor: 1,
     category: "Ladies & Menswear",
+    url: "https://www.motivi.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIKbQxiVl-usBX7behOG7wH36uobPnjdOsmQ&s",
   },
   {
     name: "Paul & Shark",
@@ -400,6 +482,8 @@ const stores = [
     phone: "091 646 00 67",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://www.paulandshark.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVLkYu8zun7sbOHK5hAWXXxS-jrzPvcKyANA&s",
   },
   {
     name: "Peuterey",
@@ -407,6 +491,8 @@ const stores = [
     phone: "091 646 36 56",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://www.peuterey.com/",
+    logoUrl: "https://cdn2.peuterey.com.filoblu.com/static/version1772106190126/img/logo_lg.svg",
   },
   {
     name: "Pinko",
@@ -414,6 +500,8 @@ const stores = [
     phone: "091 630 22 16",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://www.pinko.it/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaqFYylkLgz6CBBSZGlkD2gg0foJU-tJ6IEQ&s",
   },
   {
     name: "Polo Ralph Lauren",
@@ -421,6 +509,8 @@ const stores = [
     phone: "091 641 30 10",
     floor: 1,
     category: "Ladies & Menswear",
+    url: "https://www.ralphlauren.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM_TnlcykUPYbWI1v5tf7uqmuQHo_L4eMFmQ&s",
   },
   {
     name: "Sandro",
@@ -428,6 +518,8 @@ const stores = [
     phone: "091 260 08 64",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://www.sandro-paris.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYeCKoC6vvKt3KmvbC5anemsCAj782OmD7Bw&s",
   },
   {
     name: "Trussardi",
@@ -435,6 +527,8 @@ const stores = [
     phone: "091 225 63 23",
     floor: 2,
     category: "Ladies & Menswear",
+    url: "https://www.trussardi.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYA-1LHJkq0emoczsqEi6BQnnso2cs89peuw&s",
   },
   {
     name: "Vero Moda",
@@ -442,6 +536,8 @@ const stores = [
     phone: "091 646 31 35",
     floor: 1,
     category: "Ladies & Menswear",
+    url: "https://www.veromoda.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1NcR4EpcslWUtMzMQFnsSEG29aLVw-Dc42Q&s",
   },
   {
     name: "Woolrich",
@@ -449,6 +545,8 @@ const stores = [
     phone: "091 646 01 81",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://www.woolrich.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHC9MPVsQSAEUlgqiXoPJ4J9kJRWSRx8TUKw&s",
   },
   {
     name: "Zadig & Voltaire",
@@ -456,6 +554,8 @@ const stores = [
     phone: "091 646 28 32",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://www.zadig-et-voltaire.com/",
+    logoUrl: "https://www.zegg.ch/ZEGG%20Stores/Parfum_Kosmetik/Logos/image-thumb__9134__og-image/Zadig%20%26%20Voltaire.webp",
   },
   {
     name: "Gaudì",
@@ -463,6 +563,8 @@ const stores = [
     phone: "091 646 87 44",
     floor: 3,
     category: "Ladies & Menswear",
+    url: "https://www.gaudiofficial.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK9rlsqauDt7qYuCNB1IBkD_Xazun0LiYQUw&s",
   },
 
   // CASUALWEAR
@@ -628,6 +730,8 @@ const stores = [
     phone: "091 646 24 90",
     floor: 2,
     category: "Sportswear & Equipment",
+    url: "https://aventurx.ch/fr",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_XUjYrDrnmr5LUh_R6hOhSmdb92QbfdQSTQ&s",
   },
   {
     name: "Cmp",
@@ -635,6 +739,8 @@ const stores = [
     phone: "091 630 06 06",
     floor: 2,
     category: "Sportswear & Equipment",
+    url: "https://www.cmp.it/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3hEpZ0a4n3G4xxaLQjoxm75aKs0u0ALjVHg&s",
   },
   {
     name: "Freddy",
@@ -642,6 +748,8 @@ const stores = [
     phone: "091 646 32 22",
     floor: 0,
     category: "Sportswear & Equipment",
+    url: "https://www.freddy.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa96SVrADtQ_n4YSKfA2_dmMfX6aMLjNqIag&s",
   },
   {
     name: "Icebreaker",
@@ -649,6 +757,8 @@ const stores = [
     phone: "091 600 00 95",
     floor: 2,
     category: "Sportswear & Equipment",
+    url: "https://www.icebreaker.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsQOEu7c13SrEQTxSFj_jC1BEzxhJPUxZ-Zw&s",
   },
   {
     name: "Jaked",
@@ -656,6 +766,8 @@ const stores = [
     phone: "091 646 42 76",
     floor: 1,
     category: "Sportswear & Equipment",
+    url: "https://www.jaked.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ3BEW_xfJ3bvaXSlMtmNWEOjhRVl8R-2EkQ&s",
   },
   {
     name: "Mammut",
@@ -663,6 +775,8 @@ const stores = [
     phone: "091 630 12 44",
     floor: 2,
     category: "Sportswear & Equipment",
+    url: "https://www.mammut.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYRAXmAjnkce09mZaoOf9mqtlwm8wgJwnO-Q&s",
   },
   {
     name: "New Balance",
@@ -670,6 +784,8 @@ const stores = [
     phone: "091 646 11 01",
     floor: 2,
     category: "Sportswear & Equipment",
+    url: "https://www.newbalance.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK32h1hKG45n2RBPSqx8cnwXaLHZb3fxgxAQ&s",
   },
   {
     name: "Nike Factory Store",
@@ -677,6 +793,8 @@ const stores = [
     phone: "091 640 40 60",
     floor: 1,
     category: "Sportswear & Equipment",
+    url: "https://www.nike.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKM6jKfVroDEm-CtDCbtffRI659QdTJn1sxg&s",
   },
   {
     name: "Oakley",
@@ -684,6 +802,8 @@ const stores = [
     phone: "091 646 49 50",
     floor: 2,
     category: "Sportswear & Equipment",
+    url: "https://www.oakley.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqfF1vcVkGm0B4oUVnjYJ7cWaCus_PfkTPnA&s",
   },
   {
     name: "Odlo",
@@ -691,6 +811,8 @@ const stores = [
     phone: "041 545 36 79",
     floor: 2,
     category: "Sportswear & Equipment",
+    url: "https://www.odlo.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGHNg_8PkaxQN-EeBh0rXIhnVgRhuPVV6s9A&s",
   },
   {
     name: "Peak Performance",
@@ -698,6 +820,8 @@ const stores = [
     phone: "091 640 95 20",
     floor: 1,
     category: "Sportswear & Equipment",
+    url: "https://www.peakperformance.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl16423PUeOn7qwrM02WIuNyoQXb5WBJRAPw&s",
   },
   {
     name: "Plein Sport",
@@ -705,6 +829,8 @@ const stores = [
     phone: "091 646 80 75",
     floor: 2,
     category: "Sportswear & Equipment",
+    url: "https://www.pleinsport.com/",
+    logoUrl: "https://1000logos.net/wp-content/uploads/2020/01/Plein-Sport-Logo.jpg",
   },
   {
     name: "Puma",
@@ -712,6 +838,8 @@ const stores = [
     phone: "091 630 27 01",
     floor: 2,
     category: "Sportswear & Equipment",
+    url: "https://www.puma.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWvHwr0e8_720Om847vN_Q7bGKWLTcw6TSxQ&s",
   },
   {
     name: "Rh+",
@@ -719,6 +847,8 @@ const stores = [
     phone: "091 682 10 97",
     floor: 3,
     category: "Sportswear & Equipment",
+    url: "https://rhthelookofsport.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmHfvsvrwxcde5EyF4uODcFQM11rbcpo4TgA&s",
   },
   {
     name: "Salomon",
@@ -726,6 +856,8 @@ const stores = [
     phone: "091 646 77 44",
     floor: 2,
     category: "Sportswear & Equipment",
+    url: "https://www.salomon.com/",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Salomon_group_logo.png",
   },
   {
     name: "The North Face",
@@ -733,6 +865,8 @@ const stores = [
     phone: "091 646 23 09",
     floor: 2,
     category: "Sportswear & Equipment",
+    url: "https://www.thenorthface.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtFCyg7uk4HsDddXfuFYZvNYdvA_9xq65cFQ&s",
   },
   {
     name: "Vaude",
@@ -740,6 +874,8 @@ const stores = [
     phone: "091 630 10 78",
     floor: 2,
     category: "Sportswear & Equipment",
+    url: "https://www.vaude.com/",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Vaude.svg/3840px-Vaude.svg.png",
   },
 
   // FOOTWEAR
@@ -872,6 +1008,8 @@ const stores = [
     phone: "091 630 01 30",
     floor: 1,
     category: "Accessories",
+    url: "https://www.blitzforeyes.ch/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk1YaBmUKAcWNT2I3Q3QW9TkW3EPhDJoUz1w&s",
   },
   {
     name: "Bric's",
@@ -879,6 +1017,8 @@ const stores = [
     phone: "091 646 07 18",
     floor: 1,
     category: "Accessories",
+    url: "https://www.brics.it/",
+    logoUrl: "https://bricstore.com/cdn/shop/files/brics-logo-blue_174bd011-3a64-4234-a187-cf6d0fab671c.png?crop=center&height=1200&v=1719231953&width=1200",
   },
   {
     name: "Coccinelle",
@@ -886,6 +1026,8 @@ const stores = [
     phone: "091 630 00 24",
     floor: 3,
     category: "Accessories",
+    url: "https://www.coccinelle.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyeHcRjJ3aFbplf6oYM1V990ibklEHnwjKEw&s",
   },
   {
     name: "Freitag",
@@ -893,6 +1035,8 @@ const stores = [
     phone: "",
     floor: 3,
     category: "Accessories",
+    url: "https://www.freitag.ch/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPOGtxkE1GhmdAa_sNgoJ258CO6D8g8T8BFw&s",
   },
   {
     name: "Mantero",
@@ -900,6 +1044,8 @@ const stores = [
     phone: "091 646 90 60",
     floor: 2,
     category: "Accessories",
+    url: "https://www.mantero.ch/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtLLs0-c_Tw7ajWl0OG_kmx3hH1GMl6mNHXg&s",
   },
   {
     name: "Miriade",
@@ -907,6 +1053,8 @@ const stores = [
     phone: "091 640 95 43",
     floor: 2,
     category: "Accessories",
+    url: "https://miriade.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr0GDjVQ76cTsXSdMSYSvT3iTq6sqYhlUmIQ&s",
   },
   {
     name: "Samsonite",
@@ -914,6 +1062,8 @@ const stores = [
     phone: "091 630 21 70",
     floor: 2,
     category: "Accessories",
+    url: "https://www.samsonite.com/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf9-3cKv2dFbhnwHa4FgeAIAwmMUiijFJUgQ&s",
   },
   {
     name: "Belotti OtticaUdito",
@@ -921,6 +1071,8 @@ const stores = [
     phone: "091 646 30 31",
     floor: 3,
     category: "Accessories",
+    url: "https://www.belottiotticaudito.ch/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0c_t-0mUlLrXa_xWQBDLfd0oWl3vACPgw5w&s",
   },
 
   // ELECTRONICS
