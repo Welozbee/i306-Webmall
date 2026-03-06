@@ -444,6 +444,8 @@ const stores = [
     phone: "091 971 60 00",
     floor: 2,
     category: "Casualwear",
+    url: "https://www.aeronauticamilitareofficialstore.it/eu-it/",
+    logoUrl: "https://www.aeronauticamilitareofficialstore.it/static/version1769071264/frontend/Alpenite/cristianodithiene/it_IT/images/misc/logo-color.svg",
   },
   {
     name: "Boxeur Des Rues - Malloy",
@@ -451,6 +453,8 @@ const stores = [
     phone: "091 646 01 01",
     floor: 2,
     category: "Casualwear",
+    url: "https://www.boxeurdesrues.com",
+    logoUrl: "https://www.boxeurdesrues.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.6e142397.png&w=1920&q=75",
   },
   {
     name: "Calvin Klein",
@@ -458,6 +462,8 @@ const stores = [
     phone: "091 646 02 50",
     floor: 2,
     category: "Casualwear",
+    url: "https://www.calvinklein.ch/FR?cmpid=ch:cpc|so:google|ca:calvin%20klein|cr:610466218982|lb:17745293644|ag:134076671650|pi:kwd-11661971&gclsrc=aw.ds&&utm_source=google&utm_medium=cpc&utm_campaign=17745293644&utm_id=17745293644&utm_term=calvin%20klein&utm_content=134076671650&utm_source_platform=g&gad_source=1&gad_campaignid=17745293644&gclid=CjwKCAiAzZ_NBhAEEiwAMtqKy67dePePPCj5cgfFR-f2D2oW77omP1RRWYsGnGfhImWfCkQXgH3CdBoCzCMQAvD_BwE",
+    logoUrl: "https://static.vecteezy.com/system/resources/thumbnails/023/400/513/small/calvin-klein-brand-clothes-logo-symbol-design-fashion-illustration-with-black-background-free-vector.jpg",
   },
   {
     name: "C.P. Company",
@@ -465,6 +471,8 @@ const stores = [
     phone: "091 646 02 21",
     floor: 2,
     category: "Casualwear",
+    url: "https://www.cpcompany.com/en-ch/",
+    logoUrl: "https://www.cpcompany.com/dw/image/v2/BDWM_PRD/on/demandware.static/-/Library-Sites-CPCompanyLibrary/default/dw9e00be0f/images/header/hero/RD%20DESK%202.jpg?sw=1920",
   },
   {
     name: "Diesel Factory Outlet",
@@ -472,6 +480,8 @@ const stores = [
     phone: "091 646 02 46",
     floor: 1,
     category: "Casualwear",
+    url: "https://ch.diesel.com/fr/stores",
+    logoUrl: "https://marketingportal.viaoutlets.com/m/5895e9d3349094c3/webimage-DIESEL-LOGO-svg.jpg",
   },
   {
     name: "Gant",
@@ -479,6 +489,8 @@ const stores = [
     phone: "091 646 50 22",
     floor: 1,
     category: "Casualwear",
+    url: "https://www.gant.ch/",
+    logoUrl: "https://www.terracity.com.tr/fileadmin/user_upload/GLOBAL/brand_stores/logos/gant.jpg",
   },
   {
     name: "Guess 1",
@@ -486,6 +498,8 @@ const stores = [
     phone: "091 630 26 50",
     floor: 2,
     category: "Casualwear",
+    url: "",
+    logoUrl: "",
   },
   {
     name: "Guess 2",
@@ -493,6 +507,8 @@ const stores = [
     phone: "091 646 87 01",
     floor: 2,
     category: "Casualwear",
+    url: "",
+    logoUrl: "",
   },
   {
     name: "Harmont & Blaine",
@@ -500,6 +516,8 @@ const stores = [
     phone: "091 646 03 55",
     floor: 2,
     category: "Casualwear",
+    url: "https://www.harmontblaine.com/ch/fr/",
+    logoUrl: "https://www.harmontblaine.com/on/demandware.static/Sites-harmont_and_blaine-Site/-/default/dw134a9573/images/HB_LOGO.png",
   },
   {
     name: "Jack & Jones",
@@ -507,6 +525,8 @@ const stores = [
     phone: "091 630 00 04",
     floor: 1,
     category: "Casualwear",
+    url: "https://www.jackjones.com/fr-ch",
+    logoUrl: "https://www.viamoda.ad/wp-content/uploads/2020/04/Logo-Jack-And-Jones.jpg",
   },
   {
     name: "K·Way",
@@ -514,6 +534,8 @@ const stores = [
     phone: "091 609 10 00",
     floor: 1,
     category: "Casualwear",
+    url: "https://www.k-way.com/it",
+    logoUrl: "https://www.k-way.com/cdn/shop/files/color_IT.png?v=1644416244&width=280",
   },
   {
     name: "La Martina",
@@ -521,6 +543,8 @@ const stores = [
     phone: "091 646 54 35",
     floor: 1,
     category: "Casualwear",
+    url: "https://lamartina.com/fr-ch",
+    logoUrl: "https://lamartina.com/cdn/shop/files/logo_white.svg?v=1712221281&width=313",
   },
   {
     name: "Lacoste",
@@ -528,6 +552,8 @@ const stores = [
     phone: "091 646 11 24",
     floor: 1,
     category: "Casualwear",
+    url: "https://www.lacoste.com",
+    logoUrl: "https://logos-world.net/wp-content/uploads/2020/09/Lacoste-Logo.png",
   },
   {
     name: "Lee - Wrangler",
@@ -535,6 +561,8 @@ const stores = [
     phone: "091 646 01 01",
     floor: 2,
     category: "Casualwear",
+    url: "https://eu.wrangler.com/fr-fr/home",
+    logoUrl: "https://marketingportal.viaoutlets.com/m/1d14a6f4d00733f5/webimage-Lee_Wrangler_schwarz-svg.jpg",
   },
   {
     name: "Levi's & Dockers",
@@ -542,6 +570,8 @@ const stores = [
     phone: "091 630 29 85",
     floor: 1,
     category: "Casualwear",
+    url: "https://eu.dockers.com/fr",
+    logoUrl: "https://wp.logos-download.com/wp-content/uploads/2019/11/Levi%E2%80%99s_Dockers_Logo.png?dl",
   },
   {
     name: "Napapijri",
@@ -549,6 +579,8 @@ const stores = [
     phone: "091 646 74 83",
     floor: 3,
     category: "Casualwear",
+    url: "https://www.napapijri.com/fr-ch",
+    logoUrl: "https://www.napapijri.com/cdn/shop/files/Napapijri_Logo_Hi-Res.svg?v=1747432927&width=200",
   },
   {
     name: "Only",
@@ -556,6 +588,8 @@ const stores = [
     phone: "091 646 23 35",
     floor: 1,
     category: "Casualwear",
+    url: "https://www.only.com/fr-ch",
+    logoUrl: "https://images.only.com/media/keelxfa1/only-logo.jpg",
   },
   {
     name: "Pepe Jeans",
@@ -563,6 +597,8 @@ const stores = [
     phone: "091 630 03 27",
     floor: 2,
     category: "Casualwear",
+    url: "https://www.jeans.ch/fr/marques/pepe-jeans-shop",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS95W3zOngsrCqffZ26CRqojpPCEMvaw0ZMxw&s",
   },
   {
     name: "Quiksilver",
@@ -570,6 +606,8 @@ const stores = [
     phone: "091 646 82 33",
     floor: 1,
     category: "Casualwear",
+    url: "https://www.quiksilver.ch/herrenbekleidung",
+    logoUrl: "https://res.cloudinary.com/ekoweb/image/upload/v1761903117/premium/quiksilver/logo-bma-Quiksilver-noir_gkjivk.png",
   },
   {
     name: "Replay",
@@ -577,6 +615,8 @@ const stores = [
     phone: "091 630 27 14",
     floor: 2,
     category: "Casualwear",
+    url: "https://www.replayjeans.com/ch",
+    logoUrl: "https://www.replayjeans.com/ch/static/version1772439979/frontend/Syncitgroup/replay/default/images/replay-logo.svg",
   },
   {
     name: "Timberland",
@@ -584,6 +624,8 @@ const stores = [
     phone: "091 630 23 55",
     floor: 2,
     category: "Casualwear",
+    url: "https://www.timberland.com/en-ch",
+    logoUrl: "https://cdn.freebiesupply.com/logos/large/2x/timberland-1-logo-black-and-white.png",
   },
   {
     name: "Tommy Hilfiger",
@@ -591,6 +633,8 @@ const stores = [
     phone: "091 630 20 54",
     floor: 2,
     category: "Casualwear",
+    url: "https://ch.tommy.com",
+    logoUrl: "https://static.vecteezy.com/system/resources/previews/071/985/796/non_2x/tommy-hilfiger-logo-set-top-clothing-brand-editorial-logotype-free-vector.jpg",
   },
 
   // SPORTSWEAR & EQUIPMENT
@@ -721,6 +765,8 @@ const stores = [
     phone: "091 630 28 30",
     floor: 2,
     category: "Footwear",
+    url: "https://www.baldinini-shop.com",
+    logoUrl: "https://www.mcarthurglen.com/globalassets-v12/01-brands/baldinini/assets/baldinini-brand-logo-1080x1080-recuperato.png",
   },
   {
     name: "Bally",
@@ -728,6 +774,8 @@ const stores = [
     phone: "091 646 73 45",
     floor: 3,
     category: "Footwear",
+    url: "https://www.bally.com/fr-ch",
+    logoUrl: "https://www.bally.com/cdn/shop/files/Bally_Logo_Light.svg?v=1739290843&width=100",
   },
   {
     name: "Church's",
@@ -735,6 +783,8 @@ const stores = [
     phone: "091 640 60 20",
     floor: 3,
     category: "Footwear",
+    url: "https://www.church-footwear.com/eu/en.html",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb6Xc1yB48LgwXB7uwlFfOoimHZ_QfHvDd8w&s",
   },
   {
     name: "Clarks",
@@ -742,6 +792,8 @@ const stores = [
     phone: "091 630 08 01",
     floor: 1,
     category: "Footwear",
+    url: "https://www.clarks.com/fr-ch",
+    logoUrl: "https://clarks.a.bigcontent.io/v1/static/ClarksLogo_Update",
   },
   {
     name: "Ecco",
@@ -749,6 +801,8 @@ const stores = [
     phone: "091 646 08 88",
     floor: 2,
     category: "Footwear",
+    url: "https://ch.ecco.com/fr-CH",
+    logoUrl: "https://1000logos.net/wp-content/uploads/2021/05/ECCO-logo.png",
   },
   {
     name: "Fratelli Rossetti",
@@ -756,6 +810,8 @@ const stores = [
     phone: "091 630 28 72",
     floor: 2,
     category: "Footwear",
+    url: "https://fratellirossetti.com",
+    logoUrl: "https://fratellirossetti.com/cdn/shop/files/logo.png?v=1691683003&width=700",
   },
   {
     name: "Geox",
@@ -763,6 +819,8 @@ const stores = [
     phone: "091 630 22 24",
     floor: 1,
     category: "Footwear",
+    url: "https://www.geox.com",
+    logoUrl: "https://www.geox.com/on/demandware.static/Sites-xcom-dach-Site/-/default/dw747c7f91/images/Geox-Logo.svg",
   },
   {
     name: "Jimmy Choo",
@@ -770,6 +828,8 @@ const stores = [
     phone: "091 646 18 20",
     floor: 2,
     category: "Footwear",
+    url: "https://row.jimmychoo.com/en/home",
+    logoUrl: "https://1000logos.net/wp-content/uploads/2022/07/Jimmy-Choo-Logo-1996.png",
   },
   {
     name: "Pollini",
@@ -777,6 +837,8 @@ const stores = [
     phone: "091 646 79 06",
     floor: 3,
     category: "Footwear",
+    url: "https://www.pollini.com/en",
+    logoUrl: "https://iconape.com/wp-content/files/cw/202013/png/202013.png",
   },
   {
     name: "Skechers",
@@ -784,6 +846,8 @@ const stores = [
     phone: "091 646 01 60",
     floor: 2,
     category: "Footwear",
+    url: "https://www.skechers.ch/fr",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9TEyNeOs7cWn2QPTZveAmVMJJ6Z0rauKu_g&s",
   },
   {
     name: "Tod's - Hogan",
@@ -791,6 +855,8 @@ const stores = [
     phone: "091 646 92 15",
     floor: 3,
     category: "Footwear",
+    url: "https://www.hogan.com/ch-fr/home/",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyW4-g0384_IGQFKbvMQ2AeUN58divn-lo5A&s",
   },
   {
     name: "Ugg",
@@ -798,6 +864,8 @@ const stores = [
     phone: "091 630 00 71",
     floor: 2,
     category: "Footwear",
+    url: "https://www.ugg.com/eu/fr/fr/",
+    logoUrl: "https://1000logos.net/wp-content/uploads/2017/07/UGG-logo.png",
   },
   {
     name: "Vans",
@@ -805,6 +873,8 @@ const stores = [
     phone: "091 630 02 93",
     floor: 2,
     category: "Footwear",
+    url: "https://www.vans.com/fr-ch",
+    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8m-JqF5NhyIfRW87_MpwfAd5W39j4bl0iUg&s",
   },
 
   // WATCHES & JEWELLERY
@@ -814,6 +884,8 @@ const stores = [
     phone: "091 630 15 95",
     floor: 3,
     category: "Watches & Jewellery",
+    url: "https://www.damiani.com/fr_ch",
+    logoUrl: "https://images.seeklogo.com/logo-png/32/1/damiani-logo-png_seeklogo-321338.png",
   },
   {
     name: "Hour Passion",
@@ -821,6 +893,8 @@ const stores = [
     phone: "091 646 14 44",
     floor: 3,
     category: "Watches & Jewellery",
+    url: "https://www.hourpassion.com/fr",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/fr/5/5a/HourPassion-logo.jpeghttps://www.damiani.com/fr_ch",
   },
   {
     name: "Swarovski",
@@ -828,6 +902,8 @@ const stores = [
     phone: "091 646 01 78",
     floor: 1,
     category: "Watches & Jewellery",
+    url: "https://www.swarovski.com/fr-CH/",
+    logoUrl: "https://www.swarovski.com/_ui/responsive/theme-swarovski/images/icons/swa-brandlogo-icon.svg",
   },
   {
     name: "Swatch",
@@ -835,6 +911,8 @@ const stores = [
     phone: "091 646 90 09",
     floor: 3,
     category: "Watches & Jewellery",
+    url: "https://www.swatch.com/fr-ch/",
+    logoUrl: "https://1000logos.net/wp-content/uploads/2017/06/Swatch-Logo.png",
   },
 
   // ACCESSORIES
@@ -902,6 +980,8 @@ const stores = [
     phone: "091 646 08 05",
     floor: 1,
     category: "Electronics",
+    url: "https://www.sbsmobile.com",
+    logoUrl: "https://www.sbsmobile.com/cdn/shop/files/logo_sbs_nero.png?v=1738324531&width=170",
   },
 
   // BEAUTY
@@ -911,6 +991,8 @@ const stores = [
     phone: "091 646 09 29",
     floor: 1,
     category: "Beauty",
+    url: "",
+    logoUrl: "",
   },
   {
     name: "Free Shop 2",
@@ -918,6 +1000,8 @@ const stores = [
     phone: "091 646 32 41",
     floor: 3,
     category: "Beauty",
+    url: "",
+    logoUrl: "",
   },
   {
     name: "Kiko Milano",
@@ -925,6 +1009,8 @@ const stores = [
     phone: "091 630 02 55",
     floor: 2,
     category: "Beauty",
+    url: "https://www.kikocosmetics.com/de-ch/",
+    logoUrl: "https://balexert.ch/app/uploads/2019/05/maquillage-logo-kiko-milano.webp",
   },
 
   // HOME
