@@ -1172,7 +1172,7 @@ const stores = [
     floor: 1,
     category: "Beauty",
     url: "",
-    logoUrl: "",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
   },
   {
     name: "Free Shop 2",
@@ -1181,7 +1181,7 @@ const stores = [
     floor: 3,
     category: "Beauty",
     url: "",
-    logoUrl: "",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
   },
   {
     name: "Kiko Milano",
@@ -1209,7 +1209,9 @@ const stores = [
     storeNumber: "350",
     phone: "091 646 77 12",
     floor: 3,
-    category: "Home"
+    category: "Home",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "Le Creuset",
@@ -1225,7 +1227,9 @@ const stores = [
     storeNumber: "152",
     phone: "091 646 77 12",
     floor: 1,
-    category: "Home"
+    category: "Home",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "Villeroy & Boch",
@@ -1354,21 +1358,27 @@ const stores = [
     storeNumber: "259",
     phone: "091 630 28 89",
     floor: 2,
-    category: "Food & Drinks"
+    category: "Food & Drinks",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "Fashion Bar",
     storeNumber: "234",
     phone: "091 646 12 43",
     floor: 2,
-    category: "Food & Drinks"
+    category: "Food & Drinks",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "Gelateria",
     storeNumber: "154",
     phone: "091 646 03 58",
     floor: 1,
-    category: "Food & Drinks"
+    category: "Food & Drinks",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "Il Caffè",
@@ -1376,6 +1386,8 @@ const stores = [
     phone: "091 646 58 06",
     floor: 2,
     category: "Food & Drinks",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "Lindt - Maître Chocolatier Suisse depuis 1845",
@@ -1391,7 +1403,9 @@ const stores = [
     storeNumber: "137",
     phone: "091 630 27 81",
     floor: 1,
-    category: "Food & Drinks"
+    category: "Food & Drinks",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "Maui Poke",
@@ -1407,28 +1421,36 @@ const stores = [
     storeNumber: "121",
     phone: "091 646 03 58",
     floor: 1,
-    category: "Food & Drinks"
+    category: "Food & Drinks",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "The Place Juices",
     storeNumber: "154",
     phone: "091 646 03 58",
     floor: 1,
-    category: "Food & Drinks"
+    category: "Food & Drinks",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "The Place Sweet & Salt",
     storeNumber: "121",
     phone: "091 646 03 58",
     floor: 1,
-    category: "Food & Drinks"
+    category: "Food & Drinks",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "Wood Avenue - Italian Restaurant",
     storeNumber: "170",
     phone: "091 646 03 56",
     floor: 1,
-    category: "Food & Drinks"
+    category: "Food & Drinks",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
 
   // SERVICES
@@ -1446,21 +1468,27 @@ const stores = [
     storeNumber: "019",
     phone: "091 646 78 83",
     floor: 0,
-    category: "Services"
+    category: "Services",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "Infopoint",
     storeNumber: "",
     phone: "0848 828 888",
     floor: 1,
-    category: "Services"
+    category: "Services",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "Guest Services",
     storeNumber: "",
     phone: "091 630 08 03",
     floor: 1,
-    category: "Services"
+    category: "Services",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "Planet Tax Refund Point",
@@ -1485,7 +1513,9 @@ const stores = [
     storeNumber: "019",
     phone: "091 646 78 83",
     floor: 0,
-    category: "Services"
+    category: "Services",
+    logoUrl: "https://play-lh.googleusercontent.com/gMgmfKBkq2X6n4kWByCdo-lq4AkmEWUJK8OZj5UO7ylRNzdyvODU9M5SKY2mu3EaDE4",
+
   },
   {
     name: "The Sense Gallery",
