@@ -91,6 +91,73 @@ Le projet repond au brief suivant:
 - Aucune dependance obligatoire a des services SaaS payants.
 - Le projet reste dans un cadre legal de demonstration et d'usage non commercial (voir disclaimer et licence).
 
+## 🧪 Tests
+
+### Tests unitaires (backend)
+
+Vitest, sans dépendance externe (Prisma et JWT sont mockés).
+
+```bash
+cd backend
+npm test
+```
+
+Pour surveiller les changements en continu :
+
+```bash
+npm run test:watch
+```
+
+Pour générer le rapport de couverture :
+
+```bash
+npm run test:coverage
+```
+
+### Tests d'intégration (backend)
+
+Même commande que les tests unitaires — les tests d'intégration sont inclus dans la suite Vitest.
+
+Les scénarios qui nécessitent une base PostgreSQL (`I-AUTH-01/02`, `I-GAME-01/02/03/04`) sont **automatiquement skippés** si `DATABASE_URL` n'est pas accessible. Pour les activer, pointer `DATABASE_URL` vers une base de test :
+
+```bash
+cd backend
+DATABASE_URL="postgresql://user:password@localhost:5432/webmall_test" npm test
+```
+
+La base de test doit avoir les migrations appliquées :
+
+```bash
+DATABASE_URL="postgresql://user:password@localhost:5432/webmall_test" \
+  npx prisma migrate deploy --schema=prisma/schema.prisma
+```
+
+### Tests E2E (frontend)
+
+Playwright, testés sur Chromium. Requiert que les dépendances système du navigateur soient installées.
+
+Installation du navigateur (une seule fois) :
+
+```bash
+cd frontend
+sudo npx playwright install --with-deps chromium
+```
+
+Exécution :
+
+```bash
+npx playwright test
+```
+
+Pour un module spécifique :
+
+```bash
+npx playwright test e2e/auth.spec.ts --project=chromium
+npx playwright test e2e/game.spec.ts --project=chromium
+```
+
+---
+
 ## 🚀 Deploiement Docker
 
 Prerequis:
