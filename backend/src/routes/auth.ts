@@ -240,7 +240,7 @@ router.post("/logout", async (req, res) => {
     data: { revokedAt: new Date() },
   });
 
-  res.status(204).send();
+  res.status(200).json({ message: "Logged out successfully" });
 });
 
 export default router;
