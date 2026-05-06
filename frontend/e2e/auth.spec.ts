@@ -35,16 +35,18 @@ function makeFakeJwt(payload: Record<string, unknown>): string {
   return `${header}.${body}.fakesignature`;
 }
 
+const TEST_EMAIL = "test@webmall.ch";
+
 const fakeAccessToken = makeFakeJwt({
   sub: "1",
-  email: "test@webmall.ch",
+  email: TEST_EMAIL,
   role: "USER",
 });
 
 const fakeRegisterResponse = {
   accessToken: fakeAccessToken,
   refreshToken: "fake-refresh-token-abcdef",
-  user: { id: 1, email: "test@webmall.ch", role: "USER" },
+  user: { id: 1, email: TEST_EMAIL, role: "USER" },
 };
 
 const fakeGameStatus = {
@@ -181,5 +183,93 @@ test(
 
     // Assert – redirection vers /login
     await expect(page).toHaveURL("/login");
+  },
+);
+
+// ─── E2E-AUTH-FE-02 : Accès à /admin sans session → redirection /login ────────
+
+test(
+  "E2E-AUTH-FE-02 : accès à /admin sans être connecté → redirection vers /login",
+  async ({ page }) => {
+    // Arrange : routes publiques mockées, aucun token en localStorage (session vide)
+    await page.route("**/api/visitors/**", (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ count: 1234 }),
+      }),
+    );
+
+    // Act : naviguer directement vers la page d'administration sans être connecté
+    await page.goto("/admin");
+
+    // Assert – AdminPage détecte l'absence de session et redirige vers /login
+    await expect(page).toHaveURL("/login");
+  },
+);
+
+// ─── E2E-AUTH-FE-03 : Connexion → déconnexion → jeu inaccessible ─────────────
+
+test(
+  "E2E-AUTH-FE-03 : connexion → déconnexion → jeu plus accessible",
+  async ({ page }) => {
+    // Arrange : intercepter toutes les APIs nécessaires au cycle connexion/déconnexion
+    await page.route("**/api/auth/register", (route) =>
+      route.fulfill({
+        status: 201,
+        contentType: "application/json",
+        body: JSON.stringify(fakeRegisterResponse),
+      }),
+    );
+    await page.route("**/api/auth/logout", (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ message: "Logged out successfully" }),
+      }),
+    );
+    await page.route("**/api/game/status", (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(fakeGameStatus),
+      }),
+    );
+    await page.route("**/api/visitors/**", (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ count: 1234 }),
+      }),
+    );
+    await page.route("**/api/parking**", (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify([]),
+      }),
+    );
+
+    // Arrange : s'inscrire pour obtenir une session active
+    await page.goto("/register");
+    await page.getByLabel(/^email/i).fill(TEST_EMAIL);
+    await page.getByLabel(/^mot de passe$/i).fill("Password123!");
+    await page.getByLabel(/confirmer/i).fill("Password123!");
+    await page.getByRole("button", { name: /créer mon compte/i }).click();
+    await expect(page).toHaveURL("/");
+
+    // Assert – l'utilisateur est connecté, le bouton de jeu est visible
+    await expect(
+      page.getByRole("button", { name: /gratter ma carte/i }),
+    ).toBeVisible();
+
+    // Act – ouvrir le menu utilisateur dans la navbar et se déconnecter
+    await page.locator("header").getByText(TEST_EMAIL).click();
+    await page.getByRole("button", { name: /déconnexion/i }).click();
+
+    // Assert – après déconnexion, le jeu affiche l'invitation à se connecter
+    await expect(
+      page.getByText(/connectez-vous pour participer/i),
+    ).toBeVisible();
   },
 );
