@@ -11,7 +11,7 @@
  * I-GAME-05 teste le rejet par le middleware — pas de DB nécessaire.
  */
 
-import { describe, it, expect, vi, beforeAll, afterEach, afterAll } from "vitest";
+import { describe, it, expect, vi, beforeAll, afterEach, afterAll, type TaskContext } from "vitest";
 import request from "supertest";
 import jwt from "jsonwebtoken";
 import net from "node:net";
@@ -111,9 +111,12 @@ async function registerAndLogin(suffix: string) {
 // ─── I-GAME-01 : Flux jeu complet — victoire ──────────────────────────────────
 
 describe("I-GAME-01 : Flux jeu complet — victoire", () => {
-  it.skipIf(!dbAvailable)(
+  it(
     "status → play (gain) → rewards contient le gain",
-    async () => {
+    async (ctx: TaskContext) => {
+      // Arrange : vérification DB disponible, sinon skip
+      if (!dbAvailable) return ctx.skip();
+
       // Arrange : créer un compte et s'authentifier
       const { authHeader } = await registerAndLogin("01");
 
@@ -150,9 +153,12 @@ describe("I-GAME-01 : Flux jeu complet — victoire", () => {
 // ─── I-GAME-02 : Flux jeu complet — seconde chance ────────────────────────────
 
 describe("I-GAME-02 : Flux jeu complet — seconde chance", () => {
-  it.skipIf(!dbAvailable)(
+  it(
     "première tentative enregistrée → statut permet une 2e → 2e partie jouée",
-    async () => {
+    async (ctx: TaskContext) => {
+      // Arrange : vérification DB disponible, sinon skip
+      if (!dbAvailable) return ctx.skip();
+
       const { userId } = await registerAndLogin("02");
       const auth = makeAuthHeader(userId);
 
@@ -182,9 +188,12 @@ describe("I-GAME-02 : Flux jeu complet — seconde chance", () => {
 // ─── I-GAME-03 : Limite 10 gains par jour ────────────────────────────────────
 
 describe("I-GAME-03 : Limite 10 gains/jour", () => {
-  it.skipIf(!dbAvailable)(
+  it(
     "si 10 GamePlay gagnants du jour existent, aucun lot n'est attribué",
-    async () => {
+    async (ctx: TaskContext) => {
+      // Arrange : vérification DB disponible, sinon skip
+      if (!dbAvailable) return ctx.skip();
+
       const { userId } = await registerAndLogin("03");
       const auth = makeAuthHeader(userId);
 
@@ -221,9 +230,12 @@ describe("I-GAME-03 : Limite 10 gains/jour", () => {
 // ─── I-GAME-04 : Isolation par utilisateur ────────────────────────────────────
 
 describe("I-GAME-04 : Isolation par utilisateur", () => {
-  it.skipIf(!dbAvailable)(
+  it(
     "les 2 tentatives de l'utilisateur A n'affectent pas le quota de l'utilisateur B",
-    async () => {
+    async (ctx: TaskContext) => {
+      // Arrange : vérification DB disponible, sinon skip
+      if (!dbAvailable) return ctx.skip();
+
       // Arrange : créer deux utilisateurs distincts
       const { userId: userAId } = await registerAndLogin("04a");
       const authA = makeAuthHeader(userAId);

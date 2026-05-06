@@ -10,7 +10,7 @@
  *     (le middleware rejette la requête en amont) et passent dans tous les cas.
  */
 
-import { describe, it, expect, beforeAll, afterEach, afterAll } from "vitest";
+import { describe, it, expect, beforeAll, afterEach, afterAll, type TaskContext } from "vitest";
 import request from "supertest";
 import jwt from "jsonwebtoken";
 import net from "node:net";
@@ -114,15 +114,16 @@ function expiredToken() {
 // ─── I-AUTH-01 : Inscription → Connexion ─────────────────────────────────────
 
 describe("I-AUTH-01 : Inscription → Connexion", () => {
-  it.skipIf(!dbAvailable)(
+  it(
     "crée un compte puis se connecte avec les mêmes identifiants → tokens valides",
-    async () => {
+    async (ctx: TaskContext) => {
+      // Arrange : vérification DB disponible, sinon skip
+      if (!dbAvailable) return ctx.skip();
+
       const credentials = {
         email: `${TEST_EMAIL_PREFIX}-01@webmall.ch`,
         password: "Password123!",
       };
-
-      // Arrange : aucun utilisateur existant pour cet email
 
       // Act – Étape 1 : inscription
       const registerRes = await request(app)
@@ -149,9 +150,12 @@ describe("I-AUTH-01 : Inscription → Connexion", () => {
 // ─── I-AUTH-02 : Connexion → Refresh → Logout ─────────────────────────────────
 
 describe("I-AUTH-02 : Connexion → Refresh → Logout", () => {
-  it.skipIf(!dbAvailable)(
+  it(
     "flux complet de session : connexion, rotation de token, déconnexion",
-    async () => {
+    async (ctx: TaskContext) => {
+      // Arrange : vérification DB disponible, sinon skip
+      if (!dbAvailable) return ctx.skip();
+
       const credentials = {
         email: `${TEST_EMAIL_PREFIX}-02@webmall.ch`,
         password: "Password123!",
