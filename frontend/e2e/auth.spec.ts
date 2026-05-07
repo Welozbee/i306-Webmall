@@ -263,8 +263,18 @@ test(
       page.getByRole("button", { name: /gratter ma carte/i }),
     ).toBeVisible();
 
-    // Act – ouvrir le menu utilisateur dans la navbar et se déconnecter
-    await page.locator("header").getByText(TEST_EMAIL).click();
+    // Act – ouvrir le menu utilisateur dans la navbar et se déconnecter.
+    // Desktop : l'email est visible dans la barre haute (div.hidden.md:flex).
+    // Mobile  : l'email est masqué ; seul le bouton avatar (initiale) est visible.
+    const isMobile = (page.viewportSize()?.width ?? 1280) < 768;
+    if (isMobile) {
+      const initial = TEST_EMAIL.charAt(0).toUpperCase();
+      await page.locator("header").locator("button").filter({
+        hasText: new RegExp(`^${initial}$`),
+      }).click();
+    } else {
+      await page.locator("header").getByText(TEST_EMAIL).click();
+    }
     await page.getByRole("button", { name: /déconnexion/i }).click();
 
     // Assert – après déconnexion, le jeu affiche l'invitation à se connecter
