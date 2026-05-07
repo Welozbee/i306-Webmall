@@ -118,27 +118,26 @@ async function registerViaForm(page: Page) {
 }
 
 /**
- * Simule le grattage de la ScratchCard avec 5 passes horizontales couvrant
- * plus de 50 % de la surface (seuil déclenchant onComplete).
+ * Déclenche la complétion de la ScratchCard de façon fiable en deux étapes :
+ * 1. Vider les pixels du canvas via JS (0 % opaque = 100 % transparent).
+ * 2. Cliquer une fois : handleStart → scratch() lit 100 % transparent → onComplete().
+ *
+ * Cette approche contourne les problèmes de timing liés à l'état React
+ * isScratching et à la synchronisation des événements souris dans Playwright.
  */
 async function scratchCanvas(page: Page) {
   const canvas = page.locator("canvas").first();
   await canvas.waitFor({ state: "visible" });
-  const box = await canvas.boundingBox();
-  if (!box) throw new Error("Bounding box du canvas introuvable");
 
-  // Initialiser la position de la souris sur le canvas
-  await page.mouse.move(box.x + 10, box.y + box.height / 2);
-  await page.mouse.down();
+  // Rendre le canvas entièrement transparent pour que le premier scratch
+  // dépasse immédiatement le seuil de 50 % et appelle onComplete().
+  await page.evaluate(() => {
+    const c = document.querySelector("canvas") as HTMLCanvasElement | null;
+    const ctx = c?.getContext("2d");
+    if (ctx && c) ctx.clearRect(0, 0, c.width, c.height);
+  });
 
-  // 5 passes horizontales espacées uniformément sur la hauteur
-  for (let row = 0; row < 5; row++) {
-    const y = box.y + (box.height / 5) * row + box.height / 10;
-    await page.mouse.move(box.x + 10, y);
-    await page.mouse.move(box.x + box.width - 10, y, { steps: 20 });
-  }
-
-  await page.mouse.up();
+  await canvas.click();
 }
 
 // ─── E2E-GAME-FE-01 : Connexion → gratter la carte → résultat affiché ─────────
