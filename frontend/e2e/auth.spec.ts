@@ -118,9 +118,9 @@ test("E2E-AUTH-01 : inscription via UI → redirection → accès au jeu", async
   ).toBeVisible();
 
   // Act – remplir le formulaire d'inscription
-  await page.getByLabel(/^email/i).fill("test@webmall.ch");
-  await page.getByLabel(/^mot de passe$/i).fill("Password123!");
-  await page.getByLabel(/confirmer/i).fill("Password123!");
+  await page.getByPlaceholder(/votre@email/i).fill("test@webmall.ch");
+  await page.getByPlaceholder(/minimum 8/i).fill("Password123!");
+  await page.getByPlaceholder(/retapez/i).fill("Password123!");
 
   // Act – soumettre
   await page.getByRole("button", { name: /créer mon compte/i }).click();
@@ -252,9 +252,9 @@ test(
 
     // Arrange : s'inscrire pour obtenir une session active
     await page.goto("/register");
-    await page.getByLabel(/^email/i).fill(TEST_EMAIL);
-    await page.getByLabel(/^mot de passe$/i).fill("Password123!");
-    await page.getByLabel(/confirmer/i).fill("Password123!");
+    await page.getByPlaceholder(/votre@email/i).fill(TEST_EMAIL);
+    await page.getByPlaceholder(/minimum 8/i).fill("Password123!");
+    await page.getByPlaceholder(/retapez/i).fill("Password123!");
     await page.getByRole("button", { name: /créer mon compte/i }).click();
     await expect(page).toHaveURL("/");
 
