@@ -131,7 +131,7 @@ cd backend && npm install && cd ..
 cd frontend && npm install && cd ..
 
 # Installer le navigateur Playwright (une seule fois)
-cd frontend && sudo npx playwright install --with-deps chromium && cd ..
+cd frontend && npx playwright install --with-deps chromium && cd ..
 ```
 
 #### Étape 2 — Tests unitaires (aucune dépendance externe)
